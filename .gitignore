@@ -1,0 +1,12 @@
+
+# Node Files #
+amdin/node_modules/
+server/node_modules/
+
+# package-lock #
+package-lock.json
+
+# uploads #
+uploads
+
+
