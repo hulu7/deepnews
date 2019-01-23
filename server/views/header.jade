@@ -1,0 +1,18 @@
+#fix-header.fix-header.prz
+	.header.prz
+		.w1200.prz
+			a.logo.pra(href='/?language=#{language}') #{settings.WordLogo}
+			ul.navigation.clearfix.pra
+				li
+					each item in navigation
+						a.top-level(href='#{item.link}?name=#{item.title}&language=#{language}') #{item.title}
+			a#search-button.search-button.iconfont.icon-search.pra(href='javascript:;')
+			a#hamburger(href='#my-menu')
+				span
+		#search.search.pra
+			.w1200
+				form(method="get",action="/search")
+					.search-body.prz
+						.body-waper.pra
+							input.body-input(type='text',name='keywords',placeholder='请输入关键词')
+						input.body-button.iconfont.icon-search.pra(type="submit")

@@ -1,0 +1,79 @@
+extends layout
+
+block content
+	include header.jade
+	div.container.w1200.clearfix
+		.main.fl
+			.caroufredsel.prz
+				a.carouse-btn.carouse-btn-1.iconfont.icon-left.pra(href='javascript:;')
+				a.carouse-btn.carouse-btn-2.iconfont.icon-right.pra(href='javascript:;')
+				ul#caroUl.caroUl
+					each item in Carousel
+						li
+							a.img-box(href='#{item.forceUrl}')
+								img.best-fill(data-src='#{item.articleCover}')
+				#pagination.pagination.cleargap.pra
+			.command
+				h5
+					a(href='/textAds?name=#{textAds.columnName}&language=#{language}') 【推荐】
+					a(href='#{textAds.forceUrl}',target="_blank") #{textAds.title}
+				.instro !{textAds.articleBrief}
+					
+			h3.page-title 推荐文章
+			ul.article-list
+				each item in command.docs
+					li
+						a.img-box.prz.fl
+							img.best-fill(data-src='#{item.articleCover}')
+						.list-content
+							h5
+								a.divide(href='/list?name=#{item.columnName}&language=#{language}')
+									| #{item.columnName}
+									i
+								a.atitle(href='/article?id=#{item._id}') #{item.title}
+							.meta
+								span.time.iconfont.icon-time
+									| #{moment(item.published).format("YYYY-MM-DD")}
+								span.author.iconfont.icon-author
+									| #{item.author}
+								span.count.iconfont.icon-read
+									| 阅读(#{item.clickVolume})
+								a.iconfont.icon-comment.fr(href='#')
+									| 评论(10)
+							.instro !{item.articleBrief}
+			.page.cleargap
+				if command.page-1 >=1
+					a.ibox.prev(href='/?page=#{command.page-1}&language=#{language}') 上一页
+				if command.page+1 <= command.pages
+					a.ibox.next(href='/?page=#{command.page+1}&language=#{language}') 下一页
+				a.ibox.total(href='javascript:;') 共#{command.pages}页 当前第#{command.page}页
+		include sideBar.jade
+	include footer.jade
+	script.
+		seajs.use(['init','caroufredsel'],function(){
+			
+			if(device.desktop()){
+
+				var caroUl = $('#caroUl');
+				
+				caroUl.carouFredSel({
+					items:{
+						width:820,
+						height:200
+					},
+					scroll:{
+						pauseOnHover:true,
+						fx:'crossfade'
+					},
+					prev:'.carouse-btn-1',
+					next:'.carouse-btn-2',
+					pagination:'#pagination'
+				});
+
+				var tagCloud = $('#tag-cloud');
+				
+				tagCloud.scrollToFixed({marginTop:70});
+
+			}
+			
+		});

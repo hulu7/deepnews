@@ -1,0 +1,66 @@
+extends layout
+
+block content
+	include header.jade
+	.container.w1200.clearfix
+		.article.fl
+			.article-title
+				h1 #{article.title}
+			.article-base.cleargap
+				span.ibox #{moment(article.published).format('YYYY-MM-DD')}
+				span.ibox
+					| 分类：
+					a(href='/list?name=#{article.columnName}') #{article.columnName}
+				span.ibox 阅读(#{article.clickVolume})
+				span.ibox 评论(#{article.comments.length})
+			.edits.wangEditor-container !{article.articleContent}
+				
+			.article-share
+				.bdsharebuttonbox
+					a.bds_more(href='#', data-cmd='more')
+					a.bds_qzone(href='#', data-cmd='qzone', title='分享到QQ空间')
+					a.bds_tsina(href='#', data-cmd='tsina', title='分享到新浪微博')
+					a.bds_sqq(href='#', data-cmd='sqq', title='分享到QQ好友')
+					a.bds_tqq(href='#', data-cmd='tqq', title='分享到腾讯微博')
+					a.bds_renren(href='#', data-cmd='renren', title='分享到人人网')
+					a.bds_weixin(href='#', data-cmd='weixin', title='分享到微信')
+					a.bds_mogujie(href='#', data-cmd='mogujie', title='分享到蘑菇街')
+					a.bds_kaixin001(href='#', data-cmd='kaixin001', title='分享到开心网')
+					a.bds_bdysc(href='#', data-cmd='bdysc', title='分享到百度云收藏')
+					a.bds_sdo(href='#', data-cmd='sdo', title='分享到麦库记事')
+					a.bds_people(href='#', data-cmd='people', title='分享到人民微博')
+					a.bds_linkedin(href='#', data-cmd='linkedin', title='分享到linkedin')
+					a.bds_twi(href='#', data-cmd='twi', title='分享到Twitter')
+					a.bds_h163(href='#', data-cmd='h163', title='分享到网易热')
+					a.bds_meilishuo(href='#', data-cmd='meilishuo', title='分享到美丽说')
+					a.bds_douban(href='#', data-cmd='douban', title='分享到豆瓣网')
+					a.bds_duitang(href='#', data-cmd='duitang', title='分享到堆糖')
+					a.bds_hx(href='#', data-cmd='hx', title='分享到和讯')
+					a.bds_evernotecn(href='#', data-cmd='evernotecn', title='分享到印象笔记')
+					a.bds_print(href='#', data-cmd='print', title='分享到打印')
+					a.bds_thx(href='#', data-cmd='thx', title='分享到和讯微博')
+				script.
+					window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"16"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+			h4.section-title 相关推荐
+			ul.command-list
+				each item in simlar
+					li
+						a.title(href='/article?id=#{item._id}') #{item.title}
+			h4.section-title 评论
+			.comment
+				.items
+					.head-image.prz.fl
+						img.best-fill(data-src='images/heads/head-3.png')
+					.comment-commit.prz
+						.text-waper
+							textarea#apply-content(placeholder='老夫见你骨骼惊奇并非凡人。将来必成大器。不如这样，你给我留个言。解除对我的封印，待我恢复法力。我们一同拯救世界如何？')
+						a#submit.submit.pra(href='javascript:;') 解除封印
+				.items
+					input#nick-name.comment-text(type='text', placeholder='昵称')
+				.items
+					input#email.comment-text(type='text', placeholder='邮箱')
+			ul.comment-list#comment-list
+		include sideBar.jade
+	include footer.jade
+	script.
+		seajs.use(['init','article']);

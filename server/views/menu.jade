@@ -1,0 +1,5 @@
+#my-menu.mm-menu.mm-offcanvas
+	ul
+		each item in navigation
+			li
+				a(href='#{item.link}?name=#{item.title}&language=#{language}') #{item.title}
