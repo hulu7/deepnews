@@ -9,7 +9,7 @@ export default angular.module('globalConfig',[])
 
 			// 服务器地址
 			SERVER_PATH : 'http://223.111.139.227:10003/',
-			LOCAL_PATH : 'http://localhost:8090/',
+			LOCAL_PATH : 'http://223.111.139.227:10002/',
 
 			// 将JSON对象序列化
 			ConversionJson(ojson) {
