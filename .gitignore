@@ -1,3 +1,5 @@
+# webstorm settings #
+.idea
 
 # Node Files #
 /admin/node_modules/*
