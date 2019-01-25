@@ -7,7 +7,7 @@ export default function Controller($scope,$state,IndexSer,CommonJs){
 
 		$state.go('login');
 
-		return;
+		// return;
 
 	}
 
