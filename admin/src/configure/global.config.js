@@ -8,8 +8,8 @@ export default angular.module('globalConfig',[])
 		return {
 
 			// 服务器地址
-			SERVER_PATH : 'http://localhost:3000/',
-			LOCAL_PATH : 'http://localhost:8090/',
+			SERVER_PATH : 'http://192.168.163.39:10003/',
+			LOCAL_PATH : 'http://192.168.163.39:10002/',
 
 			// 将JSON对象序列化
 			ConversionJson(ojson) {
