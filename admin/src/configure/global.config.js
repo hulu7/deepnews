@@ -1,8 +1,8 @@
 export default angular.module('globalConfig',[])
 	.factory('CommonJs',['$http','$rootScope','$state',function($http,$rootScope,$state){
 
-		$rootScope.SERVER_PATH = 'http://localhost:3000/';
-		$rootScope.LOCAL_PATH = 'http://localhost:8090/';
+		$rootScope.SERVER_PATH = 'http://192.168.163.39:10003/';
+		$rootScope.LOCAL_PATH = 'http://192.168.163.39:10002/';
 		$rootScope.$state = $state;
 
 		return {
