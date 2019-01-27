@@ -1,6 +1,6 @@
 module.exports = {
-	jwtsecret : 'nodejscms',
-	db_dbname : 'NodeJS',
+	jwtsecret : 'deepnewsmanager',
+	db_dbname : 'DeepNewsDatabase',
 	db_username : '',
 	db_password : ''
 }

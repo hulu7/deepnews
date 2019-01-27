@@ -11,4 +11,15 @@ package-lock.json
 # uploads #
 uploads
 
+# bundle #
+admin/bundle.js
+admin/bundle.js.map
+
+# image #
+admin/images/328cc0f6.fancybox_loading.gif
+admin/images/bf36cb66.avtar.png
+admin/images/ed9970ce.fancybox_sprite@2x.png
+admin/images/f9293863.fancybox_loading@2x.gif
+
+
 

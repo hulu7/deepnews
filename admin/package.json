@@ -8,7 +8,8 @@
     "url": "https://github.com/hulu7/deepnews.git"
   },
   "scripts": {
-    "start_admin": "webpack-dev-server"
+    "build:dev": "webpack-dev-server --devtool source-map --progress --colors --hot --inline --env development",
+    "build:prd": "webpack --env production"
   },
   "keywords": [],
   "author": "",
