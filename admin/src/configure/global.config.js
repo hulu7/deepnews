@@ -1,15 +1,15 @@
 export default angular.module('globalConfig',[])
 	.factory('CommonJs',['$http','$rootScope','$state',function($http,$rootScope,$state){
 
-		$rootScope.SERVER_PATH = 'http://223.111.139.227:10003/';
-		$rootScope.LOCAL_PATH = 'http://223.111.139.227:10002/';
+		$rootScope.SERVER_PATH = 'http://localhost:3000/';
+		$rootScope.LOCAL_PATH = 'http://localhost:8090/';
 		$rootScope.$state = $state;
 
 		return {
 
 			// 服务器地址
-			SERVER_PATH : 'http://223.111.139.227:10003/',
-			LOCAL_PATH : 'http://223.111.139.227:10002/',
+			SERVER_PATH : 'http://localhost:3000/',
+			LOCAL_PATH : 'http://localhost:8090/',
 
 			// 将JSON对象序列化
 			ConversionJson(ojson) {
