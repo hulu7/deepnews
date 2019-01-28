@@ -89,7 +89,7 @@ exports.loginIn = function(req,res){
 		}
 
 		// 查找用户名是否存在
-		User.findOne({username:username,isAdmin:true},function(err,result){
+		User.findOne({username:username},function(err,result){
 
 			// 没有出错
 			if(!err){

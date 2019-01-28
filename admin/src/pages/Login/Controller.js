@@ -25,7 +25,7 @@ export default function Controller($scope,$state,$document,LoginSer,CommonJs){
 		validLoginStaus, // 检查登录状态是否有效
 		changeCheckCode, // 更换验证码
 		reset, //重置表单
-		registerUser //添加用户
+		register //用户注册
 	}
 
 	// 配置信息
@@ -152,8 +152,8 @@ export default function Controller($scope,$state,$document,LoginSer,CommonJs){
 
 	}
 
-	function registerUser() {
-		$state.go('major.index');
+	function register() {
+
 	}
 
 }
