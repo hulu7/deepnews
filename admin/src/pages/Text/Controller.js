@@ -20,6 +20,8 @@ export default function Controller($scope,$state,$stateParams,TextSer,CommonJs,F
 	// 文章模型弹出按钮
 	var articleTrigger = $('#article-trigger');
 
+	$scope.isAdmin = CommonJs.isAdmin;
+
 	// 全选
 	$scope.selectAll = selectAll;
 

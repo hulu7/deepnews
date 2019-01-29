@@ -2,7 +2,7 @@
 	.aside-content.fr
 		span.english
 		ul.menu-list
-			li(ui-sref-active='active')
+			li(ng-if='user.isAdmin', ui-sref-active='active')
 				a.title(ui-sref="major.column")
 					span.iconfont.icon-zhongtumoshi.fl
 					span.name.fl 栏目管理
@@ -10,23 +10,23 @@
 				a.title(ui-sref="major.text")
 					span.iconfont.icon-liebiao.fl
 					span.name.fl 内容管理
-			li(ui-sref-active='active')
+			li(ng-if='user.isAdmin', ui-sref-active='active')
 				a.title(ui-sref="major.user")
 					span.iconfont.icon-31wodexuanzhong.fl
 					span.name.fl 用户管理
-			li(ui-sref-active='active')
+			li(ng-if='user.isAdmin', ui-sref-active='active')
 				a.title(ui-sref="major.message")
 					span.iconfont.icon-31guanzhu1xuanzhong.fl
 					span.name.fl 留言管理
-			li(ui-sref-active='active')
+			li(ng-if='user.isAdmin', ui-sref-active='active')
 				a.title(ui-sref='major.setting')
 					span.iconfont.icon-jisutuikuan.fl
 					span.name.fl 站点管理
-			li(ui-sref-active='active')
+			li(ng-if='user.isAdmin', ui-sref-active='active')
 				a.title(ui-sref="major.language")
 					span.iconfont.icon-huodongyouxian.fl
 					span.name.fl 语言管理
-			li(ui-sref-active='active')
+			li(ng-if='user.isAdmin', ui-sref-active='active')
 				a.title(href="#")
 					span.iconfont.icon-tushu.fl
 					span.name.fl 模型管理
