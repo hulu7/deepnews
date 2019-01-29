@@ -16,7 +16,7 @@ import fancybox from './node_modules/fancybox/dist/js/jquery.fancybox.pack.js';
 import routerConfig from 'config/router.config.js';
 import globalConfig from 'config/global.config.js';
 import dirModule from 'config/directive.config.js';
-import major from 'pages/Major'; 
+import major from 'pages/Major';
 import index from 'pages/Index';
 import login from 'pages/Login';
 import setting from 'pages/Setting';
@@ -26,6 +26,8 @@ import language from 'pages/Language';
 import message from 'pages/Message';
 import user from 'pages/User';
 import text from 'pages/Text';
+
+import index_customer from 'pages/Index_Customer';
 
 
 window.$ = jQuery;
@@ -47,7 +49,8 @@ angular.module('adminUI',[
 	language,
 	message,
 	user,
-	text
+	text,
+	index_customer
 ])
 .config(routerConfig)
 
