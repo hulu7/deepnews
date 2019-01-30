@@ -90,13 +90,7 @@ export default function Controller($scope,$state,$document,LoginSer,CommonJs){
 				localStorage.setItem('user',JSON.stringify(data.user));
 
 				// 跳转到首页
-				if (data.user.isAdmin) {
-					//admin首页
-					$state.go('major.index');
-				} else {
-					//customer首页
-					$state.go('major.index_customer');
-				}
+				$state.go('major.index');
 
 
 
