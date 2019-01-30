@@ -27,8 +27,6 @@ import message from 'pages/Message';
 import user from 'pages/User';
 import text from 'pages/Text';
 
-import index_customer from 'pages/Index_Customer';
-
 
 window.$ = jQuery;
 
@@ -49,8 +47,7 @@ angular.module('adminUI',[
 	language,
 	message,
 	user,
-	text,
-	index_customer
+	text
 ])
 .config(routerConfig)
 
