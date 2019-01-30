@@ -25,7 +25,7 @@ export default function Controller($scope,$state,$document,LoginSer,CommonJs){
 		validLoginStaus, // 检查登录状态是否有效
 		changeCheckCode, // 更换验证码
 		reset, //重置表单
-		register //用户注册
+		register //添加用户
 	}
 
 	// 配置信息
@@ -99,6 +99,8 @@ export default function Controller($scope,$state,$document,LoginSer,CommonJs){
 				}
 
 
+
+				CommonJs.isAdmin = data.user.isAdmin;
 
 				return;
 
