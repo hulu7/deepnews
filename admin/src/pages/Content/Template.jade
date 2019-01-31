@@ -8,16 +8,16 @@ table.article-list
 	thead
 		tr
 			th 标题
-			th 是否推荐
-			th 是否激活
+			th(ng-if='user.isAdmin') 是否推荐
+			th(ng-if='user.isAdmin') 是否激活
 			th 发布时间
-			th 操作
+			th(ng-if='user.isAdmin') 操作
 	tbody
 		tr(ng-repeat='item in articleList.docs')
 			td
 				label.cleargap
 					input.ibox(type='checkbox', ng-checked='item.state', ng-change='toggle($index,item.state)', ng-model='item.state')
-					span.ibox(ng-bind='item.title')
+					a(ng-click="openUrl(item.forceUrl)", href='').span.ibox(ng-bind='item.title')
 			td
 				span(ng-repeat='data in item.recommend', ng-bind="data+' '")
 				span(ng-if='item.recommend.length==0') 否

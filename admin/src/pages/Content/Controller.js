@@ -104,6 +104,13 @@ export default function Controller($scope,$state,$stateParams,ContentSer,CommonJ
 		'language' : 'ch'
 	};
 
+	$scope.openUrl = openUrl;
+
+	function openUrl(url) {
+		let win = window.open(url, '_blank');
+		win.focus();
+	}
+
 	// 将文章模型复制一份到源中 以备使用
 	Object.assign(articleModelOrigin,$scope.articleModel);
 
