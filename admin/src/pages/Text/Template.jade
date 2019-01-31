@@ -1,9 +1,9 @@
 .operation-buttons.mb
-	button.button.fl.mr(ng-if='isAdmin', ng-click='addContent("article")') 添加文章
+	button.button.fl.mr(ng-if='user.isAdmin', ng-click='addContent("article")') 添加文章
 	button.button.fl.mr(ng-click='selectAll()') 全选
 	button.button.fl.mr(ng-click='convertAll()') 反选
 	button.button.fl.mr(ng-click='cancelALL()') 全不选
-	button.button.fl.mr(ng-if='isAdmin', ng-click='deleteMany()') 批量删除
+	button.button.fl.mr(ng-if='user.isAdmin', ng-click='deleteMany()') 批量删除
 	.search-key.fr
 		.input-group
 			input.form-control(type='text', placeholder='请输入搜索关键字',autocomplete='off',ng-model='key')
