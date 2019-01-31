@@ -8,6 +8,7 @@ table.article-list
 	thead
 		tr
 			th 标题
+			th 文章链接
 			th 是否推荐
 			th 是否激活
 			th 发布时间
@@ -18,6 +19,8 @@ table.article-list
 				label.cleargap
 					input.ibox(type='checkbox', ng-checked='item.state', ng-change='toggle($index,item.state)', ng-model='item.state')
 					span.ibox(ng-bind='item.title')
+			td
+				a(ng-click="openUrl(item.forceUrl)", href='') 文章链接
 			td
 				span(ng-repeat='data in item.recommend', ng-bind="data+' '")
 				span(ng-if='item.recommend.length==0') 否

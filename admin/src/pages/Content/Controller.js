@@ -75,6 +75,8 @@ export default function Controller($scope,$state,$stateParams,ContentSer,CommonJ
 	// 清空文章表单信息
 	$scope.resizeArticle = resizeArticle;
 
+	$scope.openUrl = openUrl;
+
 	// 文章封面上传
 	uploadArticlefile();
 
@@ -257,6 +259,11 @@ export default function Controller($scope,$state,$stateParams,ContentSer,CommonJ
 
 		});
 
+	}
+
+	function openUrl(url) {
+		let win = window.open(url, '_blank');
+		win.focus();
 	}
 
 	// 修改文章 发送修改请求

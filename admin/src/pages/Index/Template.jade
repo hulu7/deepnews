@@ -1,6 +1,6 @@
 blockquote
 	| 欢迎使用DeepNews深度资讯.
-table
+table(ng-if='user.isAdmin')
 	colgroup
 		col(width="30%")
 		col(width="70%")
@@ -27,7 +27,7 @@ table
 	tr
 		td 服务器操作系统
 		td {{OsInfo.platform}}
-table
+table(ng-if='user.isAdmin')
 	colgroup
 		col(width="30%")
 		col(width="70%")
@@ -42,7 +42,7 @@ table
 	tr
 		td 文档数
 		td {{articleCount}}
-table
+table(ng-if='user.isAdmin')
 	colgroup
 		col(width="30%")
 		col(width="70%")
@@ -65,7 +65,7 @@ table
 	tr
 		td SEO描述
 		td {{webConfig.description}}
-table
+table(ng-if='user.isAdmin')
 	colgroup
 		col(width="30%")
 		col(width="70%")
