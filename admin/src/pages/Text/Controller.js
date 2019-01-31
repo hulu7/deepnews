@@ -73,6 +73,13 @@ export default function Controller($scope,$state,$stateParams,TextSer,CommonJs,F
 	// 修改文章 发送修改请求
 	$scope.sendModifyArticle = sendModifyArticle;
 
+	$scope.openUrl = openUrl;
+
+	function openUrl(url) {
+		let win = window.open(url, '_blank');
+		win.focus();
+	}
+
 	// 获取所有文章列表
 	function getArticleList(){
 
