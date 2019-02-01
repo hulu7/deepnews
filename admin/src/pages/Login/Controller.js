@@ -89,6 +89,7 @@ export default function Controller($scope,$state,$document,LoginSer,CommonJs){
 				// 存储用户信息
 				localStorage.setItem('user',JSON.stringify(data.user));
 
+				$scope.user = data.user;
 				// 跳转到首页
 				$state.go('major.index');
 

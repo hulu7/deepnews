@@ -75,6 +75,32 @@ export default function Controller($scope,$state,$stateParams,TextSer,CommonJs,F
 
 	$scope.openUrl = openUrl;
 
+	$scope.markArticle = markArticle;
+
+	$scope.unMarkArticle = unMarkArticle;
+
+	function markArticle(id, cid) {
+		var articleModel = $scope.articleList.docs.find(item => item._id === id);
+		articleModel.published = new Date(articleModel.published);
+		var subscribeIndex = articleModel.subscribe.indexOf($scope.user.username);
+		if (articleModel.mark[subscribeIndex] === '0') {
+			articleModel.mark[subscribeIndex] = '1';
+			$scope.articleModel = articleModel;
+			sendModifyArticle(id)
+		}
+	}
+
+	function unMarkArticle(id, cid) {
+		var articleModel = $scope.articleList.docs.find(item => item._id === id);
+		articleModel.published = new Date(articleModel.published);
+		var subscribeIndex = articleModel.subscribe.indexOf($scope.user.username);
+		if (articleModel.mark[subscribeIndex] === '1') {
+			articleModel.mark[subscribeIndex] = '0';
+			$scope.articleModel = articleModel;
+			sendModifyArticle(id)
+		}
+	}
+
 	function openUrl(url) {
 		let win = window.open(url, '_blank');
 		win.focus();
@@ -92,7 +118,8 @@ export default function Controller($scope,$state,$stateParams,TextSer,CommonJs,F
 				page:pageConfig.page,
 				limit:pageConfig.pageSize,
 				Token : Token,
-				language : currentLanguage
+				language : currentLanguage,
+				username: $scope.user.username
 			}).then(response=>{
 
 				var response = response.data;
@@ -147,7 +174,11 @@ export default function Controller($scope,$state,$stateParams,TextSer,CommonJs,F
 		'pagetitle' : '',
 		'pagekeywords' : '',
 		'pagedescription' : '',
-		'language' : 'ch'
+		'language' : 'ch',
+		'comments': [],
+		'mark': [],
+		'catalog': [],
+		'subscribe': []
 	};
 
 	// 将文章模型复制一份到源中 以备使用
@@ -349,6 +380,7 @@ export default function Controller($scope,$state,$stateParams,TextSer,CommonJs,F
 		})
 
 	}
+
 
 	// 修改文章 发送修改请求
 	function sendModifyArticle(modifyID){

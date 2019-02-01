@@ -50,9 +50,10 @@ exports.getArticleList = function(req,res){
 
 	var page = Number(req.query.page) || 1,
 		limit = Number(req.query.limit) || 10,
-		language = req.query.language;
+		language = req.query.language,
+		username = req.query.username;
 
-	articleModel.paginate({language:language}, {page: page, limit: limit, sort:{published:-1}}, function(err, result) {
+	articleModel.paginate({subscribe:{$in:[username]}}, {page: page, limit: limit, sort:{published:-1}}, function(err, result) {
 
 		err ? res.json({code:1,message:'文章列表失败'}) : res.json({code:0,message:'文章列表获取成功',result:result});
 
@@ -125,7 +126,7 @@ exports.modifyByID = function(req,res){
 		articleModel.update({_id:id},result,function(err,result){
 
 			// 向前台发送 栏目添加是否成功的信息
-			err ? res.json({code : 1,message:'修改文章失败'}) : res.json({code : 0,message : '修改文章成功'});
+			err ? res.json({code : 1,message:'修改失败'}) : res.json({code : 0,message : '修改成功'});
 
 		});
 		
