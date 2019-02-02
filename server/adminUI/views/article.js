@@ -178,6 +178,34 @@ exports.search = function(req,res){
 
 }
 
+// 根据关键字搜索文章
+exports.searchMarked = function(req,res){
+
+	var page = Number(req.query.page) || 1,
+		limit = Number(req.query.limit) || 10,
+		key = req.query.key,
+		language = req.query.language || 'ch',
+		username = req.query.username;
+
+	if(!key){
+
+		res.json({code:2,message:'搜索关键字不能为空'});
+
+		return;
+
+	}
+
+	var reg = new RegExp(key);
+
+	articleModel.paginate({language:language,title:{$in:[reg]},subscribe:{$in:[username]},mark:{$in:[username]}},{page: page, limit: limit, sort:{published:-1}},function(err,result){
+
+		err ? res.json({code:1,message:'搜索文章列表失败'}) : res.json({code:0,message:'搜索文章列表获取成功',result:result});
+
+
+	});
+
+}
+
 // 获取文章总数
 exports.getCount = function(req,res){
 

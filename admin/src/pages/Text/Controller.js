@@ -80,22 +80,34 @@ export default function Controller($scope,$state,$stateParams,TextSer,CommonJs,F
 	$scope.unMarkArticle = unMarkArticle;
 
 	function markArticle(id, cid) {
+
 		var articleModel = $scope.articleList.docs.find(item => item._id === id);
 		articleModel.published = new Date(articleModel.published);
+
 		if (!articleModel.mark.includes($scope.user.username)) {
+
 			articleModel.mark.push($scope.user.username);
+
 			$scope.articleModel = articleModel;
+
 			sendModifyArticle(id)
+
 		}
 	}
 
 	function unMarkArticle(id, cid) {
+
 		var articleModel = $scope.articleList.docs.find(item => item._id === id);
 		articleModel.published = new Date(articleModel.published);
+
 		if (articleModel.mark.includes($scope.user.username)) {
-			articleModel.mark.splice(articleModel.mark.indexOf($scope.user.username))
+
+			articleModel.mark.splice(articleModel.mark.indexOf($scope.user.username), 1);
+
 			$scope.articleModel = articleModel;
+
 			sendModifyArticle(id)
+
 		}
 	}
 
@@ -289,6 +301,18 @@ export default function Controller($scope,$state,$stateParams,TextSer,CommonJs,F
 			return;
 		}
 
+		if (!$scope.articleModel.subscribe.includes('admin')) {
+
+			$scope.articleModel.subscribe.push('admin');
+
+		}
+
+		if (!$scope.articleModel.subscribe.includes($scope.user.username)) {
+
+			$scope.articleModel.subscribe.push($scope.user.username);
+
+		}
+
 		// 发送添加文章请求
 		TextSer.addArticle($scope.articleModel,Token).then(response=>{
 
@@ -420,6 +444,13 @@ export default function Controller($scope,$state,$stateParams,TextSer,CommonJs,F
 
 			// 提示添加成功与否的信息
 			swal(response.message,"");
+
+			setTimeout(()=>{
+
+				//关闭弹出
+				swal.close();
+
+			},1000);
 
 		})
 
@@ -692,21 +723,44 @@ export default function Controller($scope,$state,$stateParams,TextSer,CommonJs,F
 	// 发送删除请求
 	function sendDelete(ID){
 
-		// 发送删除请求
-		TextSer.deleteByID(ID,Token).then(response=>{
+		if ($scope.user.isAdmin) {
+			// 发送删除请求
+			TextSer.deleteByID(ID, Token).then(response => {
 
-	    	var response = response.data;
+				var response = response.data;
 
-	    	// 检查令牌是否失效
-	    	if(CommonJs.checkRequestCode(response.code)) return;
+				// 检查令牌是否失效
+				if (CommonJs.checkRequestCode(response.code)) return;
 
-	    	// 获取文章列表
-	    	if(!response.code) getArticleList();
+				// 获取文章列表
+				if (!response.code) getArticleList();
 
-	    	// 用户提示
-	    	swal(response.message,'');
+				// 用户提示
+				swal(response.message, '');
 
-	    });
+			});
+
+		} else {
+
+			var articleModel = $scope.articleList.docs.find(item => item._id === ID);
+			articleModel.published = new Date(articleModel.published);
+
+			if (articleModel.subscribe.includes($scope.user.username)) {
+
+				articleModel.subscribe.splice(articleModel.subscribe.indexOf($scope.user.username), 1);
+
+				if(articleModel.mark.includes($scope.user.username)) {
+
+					articleModel.mark.splice(articleModel.mark.indexOf($scope.user.username), 1);
+
+				}
+
+				$scope.articleModel = articleModel;
+
+				sendModifyArticle(ID)
+
+			}
+		}
 
 	}
 

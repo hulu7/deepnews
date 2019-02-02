@@ -1,15 +1,15 @@
 .operation-buttons.mb
-	button.button.fl.mr(ng-if='user.isAdmin', ng-click='addContent("article")') 添加文章
+	button.button.fl.mr(ng-click='addContent("article")') 添加文章
 	button.button.fl.mr(ng-click='selectAll()') 全选
 	button.button.fl.mr(ng-click='convertAll()') 反选
 	button.button.fl.mr(ng-click='cancelALL()') 全不选
-	button.button.fl.mr(ng-if='user.isAdmin', ng-click='deleteMany()') 批量删除
+	button.button.fl.mr(ng-click='deleteMany()') 批量删除
 	.search-key.fr
 		.input-group
 			input.form-control(type='text', placeholder='请输入搜索关键字',autocomplete='off',ng-model='key')
 			span.input-group-btn
 				button.btn.btn-primary(type='button',ng-click="search(key)") 搜索
-				button.btn.btn-danger(type='button',ng-click="reset()") 重置
+				button.btn.btn-danger(type='button',ng-click="reset()") 返回
 table.article-list
 	tr
 		th 标题
@@ -55,11 +55,11 @@ a#article-trigger(href="#fancybox-article",fancybox)
 			label.col-sm-1.control-label.f13 标题
 			.col-sm-11
 				input.form-control(type='text',placeholder='请输入标题',autocomplete="off",ng-model="articleModel.title")
-		.form-group
+		.form-group(ng-if='user.isAdmin')
 			label.col-sm-1.control-label.f13 当前语言
 			.col-sm-11
 				input.form-control(type='text',disabled="disabled",autocomplete="off",ng-model="articleModel.language")
-		.form-group
+		.form-group(ng-if='user.isAdmin')
 			label.col-sm-1.control-label.f13 是否推荐
 			.col-sm-11 
 				label.checkbox-inline
@@ -71,24 +71,24 @@ a#article-trigger(href="#fancybox-article",fancybox)
 				label.checkbox-inline
 					input(type='checkbox',autocomplete="off",ng-click="updateCommand($event,'类别首页')",value="类别首页")
 					| 类别首页
-		.form-group
+		.form-group(ng-if='user.isAdmin')
 			label.col-sm-1.control-label.f13 是否激活
 			.col-sm-11 
 				label.checkbox-inline
 					input(type='checkbox',autocomplete="off",ng-model="articleModel.isActive",ng-value="articleModel.isActive")
 		.form-group
-					label.col-sm-1.control-label.f13 作者
+					label.col-sm-1.control-label.f13 来源
 					.col-sm-11
-						input.form-control(type='text',placeholder='请输入作者',autocomplete="off",ng-model="articleModel.author")
-		.form-group
+						input.form-control(type='text',placeholder='请输入来源',autocomplete="off",ng-model="articleModel.author")
+		.form-group(ng-if='user.isAdmin')
 			label.col-sm-1.control-label.f13 点击量
 			.col-sm-11
 				input.form-control(type='text',placeholder='请输入点击量',autocomplete="off",ng-model="articleModel.clickVolume")
 		.form-group
-			label.col-sm-1.control-label.f13 强制URL
+			label.col-sm-1.control-label.f13 URL
 			.col-sm-11
-				input.form-control(type='text',placeholder='请输入强制URL',autocomplete="off",ng-model="articleModel.forceUrl")
-		.form-group
+				input.form-control(type='text',placeholder='请输入URL',autocomplete="off",ng-model="articleModel.forceUrl")
+		.form-group(ng-if='user.isAdmin')
 			label.col-sm-1.control-label.f13 文章封面
 			.col-sm-11
 				.uploadImageWaper
@@ -99,23 +99,23 @@ a#article-trigger(href="#fancybox-article",fancybox)
 			label.col-sm-1.control-label.f13 发布日期
 			.col-sm-11
 				input.form-control(type='date',placeholder='请选择日期',autocomplete="off",ng-model="articleModel.published")
-		.form-group
+		.form-group(ng-show='user.isAdmin')
 			label.col-sm-1.control-label.f13 简介
 			.col-sm-11
 				#article-ins.wangEditor
-		.form-group
+		.form-group(ng-show='user.isAdmin')
 			label.col-sm-1.control-label.f13 内容
 			.col-sm-11
 				#article-con.wangEditor
-		.form-group
+		.form-group(ng-if='user.isAdmin')
 			label.col-sm-1.control-label.f13 标题
 			.col-sm-11
 				input.form-control(type='text',placeholder='请输入网页标题',autocomplete="off",ng-model="articleModel.pagetitle")
-		.form-group
+		.form-group(ng-if='user.isAdmin')
 			label.col-sm-1.control-label.f13 关键字
 			.col-sm-11
 				input.form-control(type='text',placeholder='请输入网页关键字',autocomplete="off",ng-model="articleModel.pagekeywords")
-		.form-group
+		.form-group(ng-if='user.isAdmin')
 			label.col-sm-1.control-label.f13 描述
 			.col-sm-11
 				input.form-control(type='text',placeholder='请输入网页描述',autocomplete="off",ng-model="articleModel.pagedescription")

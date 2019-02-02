@@ -73,11 +73,11 @@ export default angular.module('MarkService',[])
 
 			},
 			// 根据关键字搜索文章
-			search(params){
+			searchMarked(params){
 
 				return $http({
 					method:'get',
-					url:`${SERVER_PATH}article/search`,
+					url:`${SERVER_PATH}article/searchMarked`,
 					params:params
 				});
 

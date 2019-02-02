@@ -70,6 +70,9 @@ exports.start = function(app){
 	// 根据关键字搜索文章
 	app.get('/article/search',[jwtauth],article.search);
 
+	// 根据关键字搜索收藏文章
+	app.get('/article/searchMarked',[jwtauth],article.searchMarked);
+
 	// 获取文章总数
 	app.get('/article/getCount',[jwtauth],article.getCount);
 

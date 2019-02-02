@@ -32,16 +32,13 @@ export default function Controller($scope,$state,$stateParams,MarkSer,CommonJs,F
 	$scope.cancelALL = cancelALL;
 
 	// 批量删除
-	$scope.deleteMany = deleteMany;
-
-	// 根据ID删除文章
-	$scope.deleteByID = deleteByID;
+	$scope.unMarkMany = unMarkMany;
 
 	// 单个文章切换状态
 	$scope.toggle = toggle;
 
 	// 搜索文章
-	$scope.search = search;
+	$scope.searchMarked = searchMarked;
 
 	// 分页
 	$scope.pagination = pagination;
@@ -75,27 +72,20 @@ export default function Controller($scope,$state,$stateParams,MarkSer,CommonJs,F
 
 	$scope.openUrl = openUrl;
 
-	$scope.markArticle = markArticle;
-
 	$scope.unMarkArticle = unMarkArticle;
 
-	function markArticle(id, cid) {
-		var articleModel = $scope.articleList.docs.find(item => item._id === id);
-		articleModel.published = new Date(articleModel.published);
-		if (!articleModel.mark.includes($scope.user.username)) {
-			articleModel.mark.push($scope.user.username);
-			$scope.articleModel = articleModel;
-			sendModifyArticle(id)
-		}
-	}
-
 	function unMarkArticle(id, cid) {
+
 		var articleModel = $scope.articleList.docs.find(item => item._id === id);
 		articleModel.published = new Date(articleModel.published);
+
 		if (articleModel.mark.includes($scope.user.username)) {
+
 			articleModel.mark.splice(articleModel.mark.indexOf($scope.user.username))
 			$scope.articleModel = articleModel;
+
 			sendModifyArticle(id)
+
 		}
 	}
 
@@ -304,7 +294,7 @@ export default function Controller($scope,$state,$stateParams,MarkSer,CommonJs,F
 				$.fancybox.close();
 
 				// 获取文章列表
-				getArticleList();
+				getMarkedArticleList();
 
 				// 表单重置
 				resizeArticle();
@@ -421,6 +411,13 @@ export default function Controller($scope,$state,$stateParams,MarkSer,CommonJs,F
 			// 提示添加成功与否的信息
 			swal(response.message,"");
 
+			setTimeout(()=>{
+
+				//关闭弹出
+				swal.close();
+
+			},1000);
+
 		})
 
 	}
@@ -520,8 +517,8 @@ export default function Controller($scope,$state,$stateParams,MarkSer,CommonJs,F
 
 	}
 
-	// [批量删除]
-	function deleteMany(){
+	// [批量取消收藏]
+	function unMarkMany(){
 
 		var sign = false;
 
@@ -538,8 +535,8 @@ export default function Controller($scope,$state,$stateParams,MarkSer,CommonJs,F
 		if(sign){
 
 			swal({
-				title:"您确定要删除吗?",
-				text: "删除后不可恢复!",
+				title:"您确定要取消收藏吗?",
+				text: "",
 				type: "warning",
 				showCancelButton: true,
 				confirmButtonColor: "#DD6B55",
@@ -552,7 +549,7 @@ export default function Controller($scope,$state,$stateParams,MarkSer,CommonJs,F
 
 					if(value.state){
 
-						deleteByID(value._id,true);
+						unMarkArticle(value._id, '');
 
 					}
 
@@ -562,7 +559,7 @@ export default function Controller($scope,$state,$stateParams,MarkSer,CommonJs,F
 
 		}else{
 
-			swal('请选择要删除的文章','','error');
+			swal('请选择要取消收藏的文章','','error');
 
 		}
 
@@ -576,7 +573,7 @@ export default function Controller($scope,$state,$stateParams,MarkSer,CommonJs,F
 	}
 
 	// 搜索文章
-	function search(key){
+	function searchMarked(key){
 
 		if(!key){
 
@@ -586,12 +583,13 @@ export default function Controller($scope,$state,$stateParams,MarkSer,CommonJs,F
 
 		CommonJs.getCurrentLang(Token,function(language){
 
-			MarkSer.search({
+			MarkSer.searchMarked({
 				key : key,
 				Token : Token,
 				page: 0 ,
 				limit : 15,
-				language:language.lang_field
+				language:language.lang_field,
+				username: $scope.user.username
 			}).then(response=>{
 
 				// 检查令牌是否失效
@@ -647,7 +645,7 @@ export default function Controller($scope,$state,$stateParams,MarkSer,CommonJs,F
 
 		$scope.key = '';
 
-		getArticleList();
+		getMarkedArticleList();
 
 	}
 

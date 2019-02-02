@@ -1,7 +1,7 @@
 import router from './Router.js';
-import TextService from './Service.js';
+import MarkService from './Service.js';
 
-export default angular.module('Mark',[TextService])
+export default angular.module('Mark',[MarkService])
 	.config(router)
 	.name;
 
