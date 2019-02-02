@@ -48,8 +48,8 @@ a#article-trigger(href="#fancybox-article",fancybox)
 .fancybox-container#fancybox-article(style="display:none")
 	form.form-horizontal(method="post")
 		.form-group(ng-if="!sign.isModify")
-			label.col-sm-1.control-label.f13 所属栏目
-			.col-sm-11
+			label.col-sm-1.control-label.f13(ng-if='user.isAdmin') 所属栏目
+			.col-sm-11(ng-if='user.isAdmin')
 				select.form-control(ng-model='articleModel.columnID')
 					option(ng-repeat="item in allColumns",ng-value='item._id') {{item.title}}
 		.form-group

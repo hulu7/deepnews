@@ -298,7 +298,7 @@ export default function Controller($scope,$state,$stateParams,TextSer,CommonJs,F
 
 		if(!$.trim($scope.articleModel.columnID)){
 
-			swal("文章添加失败","栏目ID不能为空","error");
+            $scope.articleModel.columnID = $scope.allColumns[0]._id;
 
 			return;
 		}
