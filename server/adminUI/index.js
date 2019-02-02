@@ -56,6 +56,8 @@ exports.start = function(app){
 	// 获取所有文章列表
 	app.get('/article/getArticleList',[jwtauth],article.getArticleList);
 
+	app.get('/article/getMarkedArticleList',[jwtauth],article.getMarkedArticleList);
+
 	// 根据文章ID删除文章
 	app.get('/article/deleteByID',[jwtauth],article.deleteByID);
 
@@ -67,6 +69,8 @@ exports.start = function(app){
 
 	// 根据关键字搜索文章
 	app.get('/article/search',[jwtauth],article.search);
+
+    app.get('/article/searchMarked',[jwtauth],article.searchMarked);
 
 	// 获取文章总数
 	app.get('/article/getCount',[jwtauth],article.getCount);

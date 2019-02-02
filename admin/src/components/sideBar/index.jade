@@ -10,6 +10,10 @@
 				a.title(ui-sref="major.text")
 					span.iconfont.icon-liebiao.fl
 					span.name.fl 内容管理
+			li(ui-sref-active='active')
+				a.title(ui-sref="major.mark")
+					span.iconfont.icon-zhongtumoshi.fl
+					span.name.fl 收藏管理
 			li(ng-if='user.isAdmin', ui-sref-active='active')
 				a.title(ui-sref="major.user")
 					span.iconfont.icon-31wodexuanzhong.fl

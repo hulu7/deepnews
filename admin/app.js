@@ -26,6 +26,7 @@ import language from 'pages/Language';
 import message from 'pages/Message';
 import user from 'pages/User';
 import text from 'pages/Text';
+import mark from 'pages/Mark';
 
 
 window.$ = jQuery;
@@ -47,7 +48,8 @@ angular.module('adminUI',[
 	language,
 	message,
 	user,
-	text
+	text,
+	mark
 ])
 .config(routerConfig)
 

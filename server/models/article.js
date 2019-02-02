@@ -31,7 +31,10 @@ var articleSchema = new Schema({
 	pagedescription : String,
 	columnID        : Schema.Types.ObjectId,
 	language        : {type:String,required:true,default:'ch'},
-	comments 		: [commentSchema]
+	comments 		: [commentSchema],
+	mark            : Array,
+	catalog         : Array,
+	subscribe       : Array
 });
 
 

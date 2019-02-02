@@ -101,7 +101,11 @@ export default function Controller($scope,$state,$stateParams,ContentSer,CommonJ
 		'pagetitle' : '',
 		'pagekeywords' : '',
 		'pagedescription' : '',
-		'language' : 'ch'
+		'language' : 'ch',
+		'comments': [],
+		'mark': [],
+		'catalog': [],
+		'subscribe': ['admin', 'test0']
 	};
 
 	$scope.openUrl = openUrl;
