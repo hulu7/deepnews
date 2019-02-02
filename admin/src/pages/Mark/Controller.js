@@ -1,4 +1,4 @@
-export default function Controller($scope,$state,$stateParams,TextSer,CommonJs,FileUploader){
+export default function Controller($scope,$state,$stateParams,MarkSer,CommonJs,FileUploader){
 
 	// 获取登录token
 	const Token = window.localStorage.getItem('Token');
@@ -53,7 +53,7 @@ export default function Controller($scope,$state,$stateParams,TextSer,CommonJs,F
 	$scope.resizeArticle = resizeArticle;
 
 	// 获取所有文章列表
-	getArticleList();
+	getMarkedArticleList();
 
 	// 添加文章弹出
 	$scope.addContent = addContent;
@@ -105,14 +105,14 @@ export default function Controller($scope,$state,$stateParams,TextSer,CommonJs,F
 	}
 
 	// 获取所有文章列表
-	function getArticleList(){
+	function getMarkedArticleList(){
 
 		CommonJs.getCurrentLang(Token,function(language){
 
 			// 当前选中语言
 			var currentLanguage = language.lang_field;
 
-			TextSer.getArticleList({
+			MarkSer.getMarkedArticleList({
 				page:pageConfig.page,
 				limit:pageConfig.pageSize,
 				Token : Token,
@@ -225,7 +225,7 @@ export default function Controller($scope,$state,$stateParams,TextSer,CommonJs,F
 				// 当前语言
 				var currentLanguage = language.lang_field;
 
-				TextSer.getAllColumn(Token,currentLanguage).then(response=>{
+				MarkSer.getAllColumn(Token,currentLanguage).then(response=>{
 
 					var response = response.data;
 
@@ -290,7 +290,7 @@ export default function Controller($scope,$state,$stateParams,TextSer,CommonJs,F
 		}
 
 		// 发送添加文章请求
-		TextSer.addArticle($scope.articleModel,Token).then(response=>{
+		MarkSer.addArticle($scope.articleModel,Token).then(response=>{
 
 			var response = response.data;
 
@@ -324,7 +324,7 @@ export default function Controller($scope,$state,$stateParams,TextSer,CommonJs,F
 		$scope.sign = { isModify : true,modifyID : id };
 
 		// 根据栏目ID获取栏目模型
-		TextSer.getModelByCID(Token,cid).then(response=>{
+		MarkSer.getModelByCID(Token,cid).then(response=>{
 
 			var response = response.data;
 
@@ -337,7 +337,7 @@ export default function Controller($scope,$state,$stateParams,TextSer,CommonJs,F
 				var model = response.result.model
 
 				// 根据ID获取指定文章信息
-				TextSer.getArticleByID(id,Token).then(response=>{
+				MarkSer.getArticleByID(id,Token).then(response=>{
 
 					var response = response.data;
 
@@ -398,7 +398,7 @@ export default function Controller($scope,$state,$stateParams,TextSer,CommonJs,F
 		}
 
 		// 根据ID修改指定文章
-		TextSer.modifyByID($scope.articleModel,modifyID,Token).then(response=>{
+		MarkSer.modifyByID($scope.articleModel,modifyID,Token).then(response=>{
 
 			var response = response.data;
 
@@ -411,7 +411,7 @@ export default function Controller($scope,$state,$stateParams,TextSer,CommonJs,F
 				$.fancybox.close();
 
 				// 获取文章列表
-				getArticleList();
+				getMarkedArticleList();
 
 				// 表单重置
 				resizeArticle();
@@ -586,13 +586,12 @@ export default function Controller($scope,$state,$stateParams,TextSer,CommonJs,F
 
 		CommonJs.getCurrentLang(Token,function(language){
 
-			TextSer.search({
+			MarkSer.search({
 				key : key,
 				Token : Token,
 				page: 0 ,
 				limit : 15,
-				language:language.lang_field,
-				username: $scope.user.username
+				language:language.lang_field
 			}).then(response=>{
 
 				// 检查令牌是否失效
@@ -693,7 +692,7 @@ export default function Controller($scope,$state,$stateParams,TextSer,CommonJs,F
 	function sendDelete(ID){
 
 		// 发送删除请求
-		TextSer.deleteByID(ID,Token).then(response=>{
+		MarkSer.deleteByID(ID,Token).then(response=>{
 
 	    	var response = response.data;
 
@@ -714,4 +713,4 @@ export default function Controller($scope,$state,$stateParams,TextSer,CommonJs,F
 
 }
 
-Controller.$inject = ['$scope','$state','$stateParams','TextSer','CommonJs','FileUploader'];
+Controller.$inject = ['$scope','$state','$stateParams','MarkSer','CommonJs','FileUploader'];

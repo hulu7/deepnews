@@ -61,6 +61,21 @@ exports.getArticleList = function(req,res){
 
 }
 
+exports.getMarkedArticleList = function(req,res){
+
+	var page = Number(req.query.page) || 1,
+		limit = Number(req.query.limit) || 10,
+		language = req.query.language,
+		username = req.query.username;
+
+	articleModel.paginate({mark:{$in:[username]}}, {page: page, limit: limit, sort:{published:-1}}, function(err, result) {
+
+		err ? res.json({code:1,message:'文章列表失败'}) : res.json({code:0,message:'文章列表获取成功',result:result});
+
+	});
+
+}
+
 // 根据文章ID删除文章
 exports.deleteByID = function(req,res){
 
@@ -141,7 +156,8 @@ exports.search = function(req,res){
 	var page = Number(req.query.page) || 1,
 		limit = Number(req.query.limit) || 10,
 		key = req.query.key,
-		language = req.query.language || 'ch';
+		language = req.query.language || 'ch',
+		username = req.query.username;
 
 	if(!key){
 
@@ -153,7 +169,7 @@ exports.search = function(req,res){
 
 	var reg = new RegExp(key);
 
-	articleModel.paginate({language:language,title:{$in:[reg]}},{page: page, limit: limit, sort:{published:-1}},function(err,result){
+	articleModel.paginate({language:language,title:{$in:[reg]},subscribe:{$in:[username]}},{page: page, limit: limit, sort:{published:-1}},function(err,result){
 
 		err ? res.json({code:1,message:'搜索文章列表失败'}) : res.json({code:0,message:'搜索文章列表获取成功',result:result});
 
