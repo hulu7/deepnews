@@ -34,7 +34,7 @@ table.article-list
 		td(ng-if='user.isAdmin', ng-bind="item.isActive ? '是' : '否' ")
 		td(ng-bind="item.published | date:'yyyy-MM-dd' ")
 		td
-			a.delete(ng-if='user.isAdmin', href='javascript:;', ng-click='deleteByID(item._id,false)') [删除]
+			a.delete(href='javascript:;', ng-click='deleteByID(item._id,false)') [删除]
 			a(ng-if='user.isAdmin', href='javascript:;', ng-click='modifyByID(item._id,item.columnID)') [修改]
 			a(ng-if= "!item.mark.includes(user.username)", href='javascript:;', ng-click='markArticle(item._id, item.columnID)') [收藏]
 			a(ng-if= "item.mark.includes(user.username)", href='javascript:;', ng-click='unMarkArticle(item._id, item.columnID)') [取消收藏]
