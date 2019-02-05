@@ -12,8 +12,16 @@
 					span.name.fl 内容管理
 			li(ui-sref-active='active')
 				a.title(ui-sref="major.mark")
-					span.iconfont.icon-zhongtumoshi.fl
+					span.iconfont.icon-31guanzhu1xuanzhong.fl
 					span.name.fl 收藏管理
+			li(ui-sref-active='active')
+				a.title(ui-sref="major.add")
+					span.iconfont.icon-31wodexuanzhong.fl
+					span.name.fl 添加管理
+			li(ui-sref-active='active')
+				a.title(ui-sref="major.trash")
+					span.iconfont.icon-zhongtumoshi.fl
+					span.name.fl 垃圾管理
 			li(ng-if='user.isAdmin', ui-sref-active='active')
 				a.title(ui-sref="major.user")
 					span.iconfont.icon-31wodexuanzhong.fl

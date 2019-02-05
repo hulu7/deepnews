@@ -1,4 +1,4 @@
-export default function Controller($scope,$state,$stateParams,MarkSer,CommonJs,FileUploader){
+export default function Controller($scope,$state,$stateParams,TrashSer,CommonJs,FileUploader){
 
 	// 获取登录token
 	const Token = window.localStorage.getItem('Token');
@@ -31,14 +31,14 @@ export default function Controller($scope,$state,$stateParams,MarkSer,CommonJs,F
 	// 全不选
 	$scope.cancelALL = cancelALL;
 
-	// 批量删除
-	$scope.unMarkMany = unMarkMany;
+	// 批量恢复
+	$scope.recoveryMany = recoveryMany;
 
 	// 单个文章切换状态
 	$scope.toggle = toggle;
 
 	// 搜索文章
-	$scope.searchMarked = searchMarked;
+	$scope.searchTrash = searchTrash;
 
 	// 分页
 	$scope.pagination = pagination;
@@ -50,13 +50,13 @@ export default function Controller($scope,$state,$stateParams,MarkSer,CommonJs,F
 	$scope.resizeArticle = resizeArticle;
 
 	// 获取所有文章列表
-	getMarkedArticleList();
+	getTrashArticleList();
 
 	// 添加文章弹出
 	$scope.addContent = addContent;
 
 	// 添加文章
-	$scope.addArticle = addArticle;
+	$scope.recoveryArticle = recoveryArticle;
 
 	// 更新 是否推荐
 	$scope.updateCommand = updateCommand;
@@ -72,16 +72,21 @@ export default function Controller($scope,$state,$stateParams,MarkSer,CommonJs,F
 
 	$scope.openUrl = openUrl;
 
-	$scope.unMarkArticle = unMarkArticle;
-
-	function unMarkArticle(id, cid) {
+	function recoveryArticle(id, cid) {
 
 		var articleModel = $scope.articleList.docs.find(item => item._id === id);
 		articleModel.published = new Date(articleModel.published);
 
-		if (articleModel.mark.includes($scope.user.username)) {
+		if (articleModel.trash.includes($scope.user.username)) {
 
-			articleModel.mark.splice(articleModel.mark.indexOf($scope.user.username))
+			articleModel.trash.splice(articleModel.add.indexOf($scope.user.username));
+
+			if (!articleModel.subscribe.includes($scope.user.username)) {
+
+				articleModel.subscribe.push($scope.user.username);
+
+			}
+
 			$scope.articleModel = articleModel;
 
 			sendModifyArticle(id)
@@ -95,14 +100,14 @@ export default function Controller($scope,$state,$stateParams,MarkSer,CommonJs,F
 	}
 
 	// 获取所有文章列表
-	function getMarkedArticleList(){
+	function getTrashArticleList(){
 
 		CommonJs.getCurrentLang(Token,function(language){
 
 			// 当前选中语言
 			var currentLanguage = language.lang_field;
 
-			MarkSer.getMarkedArticleList({
+			TrashSer.getTrashArticleList({
 				page:pageConfig.page,
 				limit:pageConfig.pageSize,
 				Token : Token,
@@ -167,8 +172,8 @@ export default function Controller($scope,$state,$stateParams,MarkSer,CommonJs,F
 		'mark': [],
 		'catalog': [],
 		'subscribe': [],
-        'add': [],
-        'trash': []
+		'add': [],
+		'trash': []
 	};
 
 	// 将文章模型复制一份到源中 以备使用
@@ -282,7 +287,7 @@ export default function Controller($scope,$state,$stateParams,MarkSer,CommonJs,F
 		}
 
 		// 发送添加文章请求
-		MarkSer.addArticle($scope.articleModel,Token).then(response=>{
+		TrashSer.addArticle($scope.articleModel,Token).then(response=>{
 
 			var response = response.data;
 
@@ -296,7 +301,7 @@ export default function Controller($scope,$state,$stateParams,MarkSer,CommonJs,F
 				$.fancybox.close();
 
 				// 获取文章列表
-				getMarkedArticleList();
+				getTrashArticleList();
 
 				// 表单重置
 				resizeArticle();
@@ -316,7 +321,7 @@ export default function Controller($scope,$state,$stateParams,MarkSer,CommonJs,F
 		$scope.sign = { isModify : true,modifyID : id };
 
 		// 根据栏目ID获取栏目模型
-		MarkSer.getModelByCID(Token,cid).then(response=>{
+		AddSer.getModelByCID(Token,cid).then(response=>{
 
 			var response = response.data;
 
@@ -329,7 +334,7 @@ export default function Controller($scope,$state,$stateParams,MarkSer,CommonJs,F
 				var model = response.result.model
 
 				// 根据ID获取指定文章信息
-				MarkSer.getArticleByID(id,Token).then(response=>{
+				AddSer.getArticleByID(id,Token).then(response=>{
 
 					var response = response.data;
 
@@ -390,7 +395,7 @@ export default function Controller($scope,$state,$stateParams,MarkSer,CommonJs,F
 		}
 
 		// 根据ID修改指定文章
-		MarkSer.modifyByID($scope.articleModel,modifyID,Token).then(response=>{
+		TrashSer.modifyByID($scope.articleModel,modifyID,Token).then(response=>{
 
 			var response = response.data;
 
@@ -403,7 +408,7 @@ export default function Controller($scope,$state,$stateParams,MarkSer,CommonJs,F
 				$.fancybox.close();
 
 				// 获取文章列表
-				getMarkedArticleList();
+				getTrashArticleList();
 
 				// 表单重置
 				resizeArticle();
@@ -519,8 +524,8 @@ export default function Controller($scope,$state,$stateParams,MarkSer,CommonJs,F
 
 	}
 
-	// [批量取消收藏]
-	function unMarkMany(){
+	// [批量recovery]
+	function recoveryMany(){
 
 		var sign = false;
 
@@ -537,7 +542,7 @@ export default function Controller($scope,$state,$stateParams,MarkSer,CommonJs,F
 		if(sign){
 
 			swal({
-				title:"您确定要取消收藏吗?",
+				title:"您确定要恢复吗?",
 				text: "",
 				type: "warning",
 				showCancelButton: true,
@@ -551,7 +556,7 @@ export default function Controller($scope,$state,$stateParams,MarkSer,CommonJs,F
 
 					if(value.state){
 
-						unMarkArticle(value._id, '');
+						recoveryByID(value._id, true);
 
 					}
 
@@ -561,7 +566,7 @@ export default function Controller($scope,$state,$stateParams,MarkSer,CommonJs,F
 
 		}else{
 
-			swal('请选择要取消收藏的文章','','error');
+			swal('请选择要恢复的文章','','error');
 
 		}
 
@@ -575,7 +580,7 @@ export default function Controller($scope,$state,$stateParams,MarkSer,CommonJs,F
 	}
 
 	// 搜索文章
-	function searchMarked(key){
+	function searchTrash(key){
 
 		if(!key){
 
@@ -585,7 +590,7 @@ export default function Controller($scope,$state,$stateParams,MarkSer,CommonJs,F
 
 		CommonJs.getCurrentLang(Token,function(language){
 
-			MarkSer.searchMarked({
+			TrashSer.searchTrash({
 				key : key,
 				Token : Token,
 				page: 0 ,
@@ -638,7 +643,7 @@ export default function Controller($scope,$state,$stateParams,MarkSer,CommonJs,F
 		pageConfig.page = page;
 
 		// 获取文章列表
-		getMarkedArticleList();
+		getTrashArticleList();
 
 	}
 
@@ -647,31 +652,31 @@ export default function Controller($scope,$state,$stateParams,MarkSer,CommonJs,F
 
 		$scope.key = '';
 
-		getMarkedArticleList();
+		getTrashArticleList();
 
 	}
 
-	// 根据ID删除文章
-	function deleteByID(ID,flag){
+	// 根据ID恢复
+	function recoveryByID(ID,flag){
 
 		if(!ID){
 
-			swal("删除文章的ID不能为空",response.message,"error");
+			swal("恢复文章的ID不能为空",response.message,"error");
 
 			return;
 		}
 
-		// flag true 为批量删除 false 为单个删除
+		// flag true 为批量恢复 false 为单个恢复
 
 		if(flag){
 
-			sendDelete(ID);
+			sendRecovery(ID);
 
 		}else{
 
 			swal({
-				title:"您确定要删除吗?",
-				text: "删除后不可恢复!",
+				title:"您确定要恢复吗?",
+				text: "",
 				type: "warning",
 				showCancelButton: true,
 				confirmButtonColor: "#DD6B55",
@@ -680,7 +685,7 @@ export default function Controller($scope,$state,$stateParams,MarkSer,CommonJs,F
 				closeOnConfirm: false
 			},function(){
 
-				sendDelete(ID);
+				sendRecovery(ID);
 
 			});
 
@@ -689,28 +694,49 @@ export default function Controller($scope,$state,$stateParams,MarkSer,CommonJs,F
 	}
 
 	// 发送删除请求
-	function sendDelete(ID){
+	function sendRecovery(ID) {
 
-		// 发送删除请求
-		MarkSer.deleteByID(ID,Token).then(response=>{
+		if ($scope.user.isAdmin) {
+			// 发送删除请求
+			TextSer.deleteByID(ID, Token).then(response => {
 
-			var response = response.data;
+				var response = response.data;
 
-			// 检查令牌是否失效
-			if(CommonJs.checkRequestCode(response.code)) return;
+				// 检查令牌是否失效
+				if (CommonJs.checkRequestCode(response.code)) return;
 
-			// 获取文章列表
-			if(!response.code) getMarkedArticleList();
+				// 获取文章列表
+				if (!response.code) getArticleList();
 
-			// 用户提示
-			swal(response.message,'');
+				// 用户提示
+				swal(response.message, '');
 
-		});
+			});
 
+		} else {
+
+			var articleModel = $scope.articleList.docs.find(item => item._id === ID);
+
+			articleModel.published = new Date(articleModel.published);
+
+			if (articleModel.trash.includes($scope.user.username)) {
+
+				articleModel.trash.splice(articleModel.trash.indexOf($scope.user.username), 1);
+
+				if (!articleModel.subscribe.includes($scope.user.username)) {
+
+					articleModel.subscribe.push($scope.user.username);
+
+				}
+
+				$scope.articleModel = articleModel;
+
+				sendModifyArticle(ID)
+
+			}
+
+		}
 	}
-
-
-
 }
 
-Controller.$inject = ['$scope','$state','$stateParams','MarkSer','CommonJs','FileUploader'];
+Controller.$inject = ['$scope','$state','$stateParams','TrashSer','CommonJs','FileUploader'];

@@ -88,6 +88,7 @@ export default function Controller($scope,$state,$stateParams,TextSer,CommonJs,F
 		if (!articleModel.mark.includes($scope.user.username)) {
 
 			articleModel.mark.push($scope.user.username);
+
 			$scope.articleModel = articleModel;
 
 			sendModifyArticle(id)
@@ -190,7 +191,9 @@ export default function Controller($scope,$state,$stateParams,TextSer,CommonJs,F
 		'comments': [],
 		'mark': [],
 		'catalog': [],
-		'subscribe': []
+		'subscribe': [],
+		'add': [],
+		'trash': []
 	};
 
 	// 将文章模型复制一份到源中 以备使用
@@ -312,6 +315,18 @@ export default function Controller($scope,$state,$stateParams,TextSer,CommonJs,F
 		if (!$scope.articleModel.subscribe.includes($scope.user.username)) {
 
 			$scope.articleModel.subscribe.push($scope.user.username);
+
+		}
+
+		if (!$scope.articleModel.add.includes('admin')) {
+
+			$scope.articleModel.add.push('admin');
+
+		}
+
+		if (!$scope.articleModel.add.includes($scope.user.username)) {
+
+			$scope.articleModel.add.push($scope.user.username);
 
 		}
 
@@ -578,7 +593,7 @@ export default function Controller($scope,$state,$stateParams,TextSer,CommonJs,F
 
 			swal({
 				title:"您确定要删除吗?",
-				text: "删除后不可恢复!",
+				text: "",
 				type: "warning",
 				showCancelButton: true,
 				confirmButtonColor: "#DD6B55",
@@ -711,7 +726,7 @@ export default function Controller($scope,$state,$stateParams,TextSer,CommonJs,F
 
 			swal({
 				title:"您确定要删除吗?",
-				text: "删除后不可恢复!",
+				text: "删除后可在“垃圾管理”找回!",
 				type: "warning",
 				showCancelButton: true,
 				confirmButtonColor: "#DD6B55",
@@ -761,6 +776,18 @@ export default function Controller($scope,$state,$stateParams,TextSer,CommonJs,F
 				if (articleModel.mark.includes($scope.user.username)) {
 
 					articleModel.mark.splice(articleModel.mark.indexOf($scope.user.username), 1);
+
+				}
+
+				if (articleModel.add.includes($scope.user.username)) {
+
+					articleModel.add.splice(articleModel.mark.indexOf($scope.user.username), 1);
+
+				}
+
+				if (!articleModel.trash.includes($scope.user.username)) {
+
+					articleModel.trash.push($scope.user.username);
 
 				}
 

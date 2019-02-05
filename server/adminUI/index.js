@@ -56,7 +56,11 @@ exports.start = function(app){
 	// 获取所有文章列表
 	app.get('/article/getArticleList',[jwtauth],article.getArticleList);
 
+	app.get('/article/getAddedArticleList',[jwtauth],article.getAddedArticleList);
+
 	app.get('/article/getMarkedArticleList',[jwtauth],article.getMarkedArticleList);
+
+	app.get('/article/getTrashArticleList',[jwtauth],article.getTrashArticleList);
 
 	// 根据文章ID删除文章
 	app.get('/article/deleteByID',[jwtauth],article.deleteByID);
@@ -71,6 +75,10 @@ exports.start = function(app){
 	app.get('/article/search',[jwtauth],article.search);
 
     app.get('/article/searchMarked',[jwtauth],article.searchMarked);
+
+	app.get('/article/searchAdded',[jwtauth],article.searchAdded);
+
+	app.get('/article/searchTrash',[jwtauth],article.searchTrash);
 
 	// 获取文章总数
 	app.get('/article/getCount',[jwtauth],article.getCount);
@@ -139,25 +147,3 @@ exports.start = function(app){
 	app.get('/language/deleteLangById',[jwtauth],language.deleteLangById);
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

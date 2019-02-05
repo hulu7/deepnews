@@ -34,7 +34,9 @@ var articleSchema = new Schema({
 	comments 		: [commentSchema],
 	mark            : Array,
 	catalog         : Array,
-	subscribe       : Array
+	subscribe       : Array,
+	add             : Array,
+	trash          : Array
 });
 
 

@@ -36,6 +36,7 @@ table.article-list
 		td
 			a.delete(href='javascript:;', ng-click='deleteByID(item._id,false)') [删除]
 			a(ng-if='user.isAdmin', href='javascript:;', ng-click='modifyByID(item._id,item.columnID)') [修改]
+			a(ng-if='!user.isAdmin && item.add.includes(user.username)', href='javascript:;', ng-click='modifyByID(item._id,item.columnID)') [修改]
 			a(ng-if= "!item.mark.includes(user.username)", href='javascript:;', ng-click='markArticle(item._id, item.columnID)') [收藏]
 			a(ng-if= "item.mark.includes(user.username)", href='javascript:;', ng-click='unMarkArticle(item._id, item.columnID)') [取消收藏]
 
@@ -104,7 +105,7 @@ a#article-trigger(href="#fancybox-article",fancybox)
 			label.col-sm-1.control-label.f13 简介
 			.col-sm-11
 				#article-ins.wangEditor
-		.form-group(ng-show='user.isAdmin')
+		.form-group
 			label.col-sm-1.control-label.f13 内容
 			.col-sm-11
 				#article-con.wangEditor

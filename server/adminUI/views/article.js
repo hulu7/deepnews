@@ -76,6 +76,37 @@ exports.getMarkedArticleList = function(req,res){
 
 }
 
+exports.getAddedArticleList = function(req,res){
+
+    var page = Number(req.query.page) || 1,
+        limit = Number(req.query.limit) || 10,
+        language = req.query.language,
+        username = req.query.username;
+
+    articleModel.paginate({add:{$in:[username]}}, {page: page, limit: limit, sort:{published:-1}}, function(err, result) {
+
+        err ? res.json({code:1,message:'文章列表失败'}) : res.json({code:0,message:'文章列表获取成功',result:result});
+
+    });
+
+}
+
+
+exports.getTrashArticleList = function(req,res){
+
+	var page = Number(req.query.page) || 1,
+		limit = Number(req.query.limit) || 10,
+		language = req.query.language,
+		username = req.query.username;
+
+	articleModel.paginate({trash:{$in:[username]}}, {page: page, limit: limit, sort:{published:-1}}, function(err, result) {
+
+		err ? res.json({code:1,message:'文章列表失败'}) : res.json({code:0,message:'文章列表获取成功',result:result});
+
+	});
+
+}
+
 // 根据文章ID删除文章
 exports.deleteByID = function(req,res){
 
@@ -206,6 +237,59 @@ exports.searchMarked = function(req,res){
 
 }
 
+exports.searchAdded = function(req,res){
+
+    var page = Number(req.query.page) || 1,
+        limit = Number(req.query.limit) || 10,
+        key = req.query.key,
+        language = req.query.language || 'ch',
+        username = req.query.username;
+
+    if(!key){
+
+        res.json({code:2,message:'搜索关键字不能为空'});
+
+        return;
+
+    }
+
+    var reg = new RegExp(key);
+
+    articleModel.paginate({language:language,title:{$in:[reg]},subscribe:{$in:[username]},add:{$in:[username]}},{page: page, limit: limit, sort:{published:-1}},function(err,result){
+
+        err ? res.json({code:1,message:'搜索文章列表失败'}) : res.json({code:0,message:'搜索文章列表获取成功',result:result});
+
+
+    });
+
+}
+
+exports.searchTrash = function(req,res){
+
+	var page = Number(req.query.page) || 1,
+		limit = Number(req.query.limit) || 10,
+		key = req.query.key,
+		language = req.query.language || 'ch',
+		username = req.query.username;
+
+	if(!key){
+
+		res.json({code:2,message:'搜索关键字不能为空'});
+
+		return;
+
+	}
+
+	var reg = new RegExp(key);
+
+	articleModel.paginate({language:language,title:{$in:[reg]},trash:{$in:[username]}},{page: page, limit: limit, sort:{published:-1}},function(err,result){
+
+		err ? res.json({code:1,message:'搜索文章列表失败'}) : res.json({code:0,message:'搜索文章列表获取成功',result:result});
+
+
+	});
+
+}
 
 // 获取文章总数
 exports.getCount = function(req,res){

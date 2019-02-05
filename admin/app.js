@@ -27,6 +27,8 @@ import message from 'pages/Message';
 import user from 'pages/User';
 import text from 'pages/Text';
 import mark from 'pages/Mark';
+import add from 'pages/Add';
+import trash from 'pages/Trash';
 
 
 window.$ = jQuery;
@@ -49,7 +51,9 @@ angular.module('adminUI',[
 	message,
 	user,
 	text,
-	mark
+	mark,
+	add,
+	trash
 ])
 .config(routerConfig)
 
