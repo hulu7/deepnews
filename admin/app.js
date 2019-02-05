@@ -56,15 +56,3 @@ angular.module('adminUI',[
 	trash
 ])
 .config(routerConfig)
-
-
-
-
-
-
-
-
-
-
-
-

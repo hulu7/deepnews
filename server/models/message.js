@@ -17,6 +17,6 @@ messageSchema.index({time: 1});
 
 messageSchema.plugin(mongoosePaginate);
 
-var messageModel = db.model('Message',messageSchema);
+var messageModel = db.model('message',messageSchema);
 
 module.exports = messageModel;

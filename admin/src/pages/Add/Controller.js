@@ -564,7 +564,7 @@ export default function Controller($scope,$state,$stateParams,AddSer,CommonJs,Fi
 
 					if(value.state){
 
-						deleteByID(value._id, '');
+						deleteByID(value._id, true);
 
 					}
 

@@ -27,7 +27,7 @@ export default function Controller($scope,$document,$state){
 		// 确认是否退出
 		swal({
 			title:"您确定要退出吗?",
-			text:"退出后将不能对网站内容进行配置!",
+			text:"",
 			type:"warning",
 			showCancelButton:true,
 			confirmButtonColor:"#DD6B55",

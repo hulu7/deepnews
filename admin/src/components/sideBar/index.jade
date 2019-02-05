@@ -9,7 +9,7 @@
 			li(ui-sref-active='active')
 				a.title(ui-sref="major.text")
 					span.iconfont.icon-liebiao.fl
-					span.name.fl 内容管理
+					span.name.fl 所有文章
 			li(ui-sref-active='active')
 				a.title(ui-sref="major.mark")
 					span.iconfont.icon-31guanzhu1xuanzhong.fl
@@ -28,7 +28,7 @@
 					span.name.fl 用户管理
 			li(ng-if='user.isAdmin', ui-sref-active='active')
 				a.title(ui-sref="major.message")
-					span.iconfont.icon-31guanzhu1xuanzhong.fl
+					span.iconfont.icon-tushu.fl
 					span.name.fl 留言管理
 			li(ng-if='user.isAdmin', ui-sref-active='active')
 				a.title(ui-sref='major.setting')
