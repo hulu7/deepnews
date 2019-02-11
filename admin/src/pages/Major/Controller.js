@@ -40,7 +40,7 @@ export default function Controller($scope,$document,$state){
 			// 清空会话消息
 			localStorage.clear();
 
-			swal("成功退出DeepNews","2秒后自动跳转到登录页面","success");
+			swal("成功退出DeepINews","2秒后自动跳转到登录页面","success");
 
 			setTimeout(()=>{
 

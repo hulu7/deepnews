@@ -35,7 +35,8 @@ module.exports = function (env, argv) {
 		},
 		devServer : {
 			host : 'localhost',
-			port : 8090
+			port : 8090,
+			disableHostCheck: true
 		},
 		module : {
 			loaders : [
