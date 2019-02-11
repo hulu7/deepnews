@@ -18,7 +18,7 @@ table.article-list
         th(ng-if='user.isAdmin') 是否推荐
         th(ng-if='user.isAdmin') 是否激活
         th 发布时间
-        th(ng-if='user.isAdmin') 操作
+        th 操作
     tr(ng-repeat='item in articleList.docs')
         td
             label.cleargap
