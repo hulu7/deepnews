@@ -582,6 +582,8 @@ export default function Controller($scope,$state,$stateParams,TrashSer,CommonJs,
 	// 搜索文章
 	function searchTrash(key){
 
+		$scope.keys = key;
+
 		if(!key){
 
 			swal("搜索失败","请输入搜索关键字","error");
@@ -593,7 +595,7 @@ export default function Controller($scope,$state,$stateParams,TrashSer,CommonJs,
 			TrashSer.searchTrash({
 				key : key,
 				Token : Token,
-				page: 0 ,
+				page: pageConfig.page,
 				limit : 15,
 				language:language.lang_field,
 				username: $scope.user.username
@@ -642,8 +644,17 @@ export default function Controller($scope,$state,$stateParams,TrashSer,CommonJs,
 
 		pageConfig.page = page;
 
-		// 获取文章列表
-		getTrashArticleList();
+		if(!$scope.keys){
+
+			// 获取文章列表
+			getTrashArticleList();
+			return;
+
+		}else{
+
+			searchTrash($scope.keys);
+
+		}
 
 	}
 

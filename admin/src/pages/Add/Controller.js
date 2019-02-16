@@ -590,6 +590,8 @@ export default function Controller($scope,$state,$stateParams,AddSer,CommonJs,Fi
 	// 搜索文章
 	function searchAdded(key){
 
+		$scope.keys = key;
+
 		if(!key){
 
 			swal("搜索失败","请输入搜索关键字","error");
@@ -601,7 +603,7 @@ export default function Controller($scope,$state,$stateParams,AddSer,CommonJs,Fi
 			AddSer.searchAdded({
 				key : key,
 				Token : Token,
-				page: 0 ,
+				page: pageConfig.page,
 				limit : 15,
 				language:language.lang_field,
 				username: $scope.user.username
@@ -650,8 +652,17 @@ export default function Controller($scope,$state,$stateParams,AddSer,CommonJs,Fi
 
 		pageConfig.page = page;
 
-		// 获取文章列表
-		getAddedArticleList();
+		if(!$scope.keys){
+
+			// 获取文章列表
+			getAddedArticleList();
+			return;
+
+		}else{
+
+			searchAdded($scope.keys);
+
+		}
 
 	}
 

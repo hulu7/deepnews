@@ -577,6 +577,8 @@ export default function Controller($scope,$state,$stateParams,MarkSer,CommonJs,F
 	// 搜索文章
 	function searchMarked(key){
 
+		$scope.keys = key;
+
 		if(!key){
 
 			swal("搜索失败","请输入搜索关键字","error");
@@ -588,7 +590,7 @@ export default function Controller($scope,$state,$stateParams,MarkSer,CommonJs,F
 			MarkSer.searchMarked({
 				key : key,
 				Token : Token,
-				page: 0 ,
+				page: pageConfig.page,
 				limit : 15,
 				language:language.lang_field,
 				username: $scope.user.username
@@ -637,8 +639,17 @@ export default function Controller($scope,$state,$stateParams,MarkSer,CommonJs,F
 
 		pageConfig.page = page;
 
-		// 获取文章列表
-		getMarkedArticleList();
+		if(!$scope.keys){
+
+			// 获取文章列表
+			getMarkedArticleList();
+			return;
+
+		}else{
+
+			searchMarked($scope.keys);
+
+		}
 
 	}
 
