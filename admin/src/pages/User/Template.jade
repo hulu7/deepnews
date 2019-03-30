@@ -40,6 +40,7 @@
 
 .operation-buttons.mb
 	a#fancybox-trigger.button.fl.mr(href="#fancybox-container") 添加用户
+paging(page="pageConfig.page",page-size="pageConfig.pageSize",total="pageConfig.total",dots="...",show-prev-next="true",show-first-last="true",paging-action="pagination(page)",text-first="首页",text-last="尾页",text-next="下一页",text-prev="上一页")
 table
 	tr
 		th 用户名
@@ -55,4 +56,3 @@ table
 		td(ng-bind="item.isAdmin ? '管理员' : '普通用户' ")
 		td
 			a(href='javascript:;', ng-click='deleteUserByID(item._id)') 删除
-paging(page="pageConfig.page",page-size="pageConfig.pageSize",total="pageConfig.total",dots="...",show-prev-next="true",show-first-last="true",paging-action="pagination(page)",text-first="首页",text-last="尾页",text-next="下一页",text-prev="上一页")

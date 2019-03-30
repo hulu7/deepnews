@@ -9,6 +9,7 @@
             span.input-group-btn
                 button.btn.btn-primary(type='button',ng-click="searchTrash(key)") 搜索
                 button.btn.btn-danger(type='button',ng-click="reset()") 返回
+paging(page="pageConfig.page",page-size="pageConfig.pageSize",total="pageConfig.total",dots="...",show-prev-next="true",show-first-last="true",paging-action="pagination(page)",text-first="首页",text-last="尾页",text-next="下一页",text-prev="上一页")
 table.article-list
     tr
         th 标题
@@ -34,7 +35,6 @@ table.article-list
         td(ng-bind="item.published | date:'yyyy-MM-dd' ")
         td
             a(ng-if= "item.trash.includes(user.username)", href='javascript:;', ng-click='recoveryArticle(item._id, item.columnID)') [恢复]
-paging(page="pageConfig.page",page-size="pageConfig.pageSize",total="pageConfig.total",dots="...",show-prev-next="true",show-first-last="true",paging-action="pagination(page)",text-first="首页",text-last="尾页",text-next="下一页",text-prev="上一页")
 
 .user-tip(ng-if='articleList.docs.length==0') 暂无数据
 

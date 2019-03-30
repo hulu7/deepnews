@@ -6,10 +6,11 @@
     button.button.fl.mr(ng-click='deleteMany()') 批量删除
     .search-key.fr
         .input-group
-            input.form-control(type='text', placeholder='请输入搜索关键字',autocomplete='off',ng-model='key')
+            input.form-control(type='text', placeholder='请输入搜索关键字', autocomplete='off',ng-model='key')
             span.input-group-btn
                 button.btn.btn-primary(type='button',ng-click="search(key)") 搜索
                 button.btn.btn-danger(type='button',ng-click="reset()") 返回
+paging(page="pageConfig.page",page-size="pageConfig.pageSize",total="pageConfig.total",dots="...",show-prev-next="true",show-first-last="true",paging-action="pagination(page)",text-first="首页",text-last="尾页",text-next="下一页",text-prev="上一页")
 table.article-list
     tr
         th 标题
@@ -39,8 +40,6 @@ table.article-list
             a(ng-if='!user.isAdmin && item.add.includes(user.username)', href='javascript:;', ng-click='modifyByID(item._id,item.columnID)') [修改]
             a(ng-if= "!item.mark.includes(user.username)", href='javascript:;', ng-click='markArticle(item._id, item.columnID)') [收藏]
             a(ng-if= "item.mark.includes(user.username)", href='javascript:;', ng-click='unMarkArticle(item._id, item.columnID)') [取消收藏]
-
-paging(page="pageConfig.page",page-size="pageConfig.pageSize",total="pageConfig.total",dots="...",show-prev-next="true",show-first-last="true",paging-action="pagination(page)",text-first="首页",text-last="尾页",text-next="下一页",text-prev="上一页")
 
 .user-tip(ng-if='articleList.docs.length==0') 暂无数据
 
