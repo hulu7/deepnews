@@ -656,7 +656,7 @@ export default function Controller($scope,$state,$stateParams,MarkSer,CommonJs,F
 	// 重置搜索
 	function reset(){
 
-		$scope.key = '';
+		$scope.keys = '';
 
 		getMarkedArticleList();
 

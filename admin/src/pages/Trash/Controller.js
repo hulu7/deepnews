@@ -661,7 +661,7 @@ export default function Controller($scope,$state,$stateParams,TrashSer,CommonJs,
 	// 重置搜索
 	function reset(){
 
-		$scope.key = '';
+		$scope.keys = '';
 
 		getTrashArticleList();
 

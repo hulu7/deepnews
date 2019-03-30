@@ -710,11 +710,8 @@ export default function Controller($scope,$state,$stateParams,TextSer,CommonJs,F
 
 	// 重置搜索
 	function reset(){
-
-		$scope.key = '';
-
+		$scope.keys = '';
 		getArticleList();
-
 	}
 
 	// 根据ID删除文章

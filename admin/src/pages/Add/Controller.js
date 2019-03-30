@@ -669,7 +669,7 @@ export default function Controller($scope,$state,$stateParams,AddSer,CommonJs,Fi
 	// 重置搜索
 	function reset(){
 
-		$scope.key = '';
+		$scope.keys = '';
 
 		getAddedArticleList();
 
