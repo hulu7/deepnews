@@ -19,6 +19,7 @@ table.article-list
         th(ng-if='user.isAdmin') 是否推荐
         th(ng-if='user.isAdmin') 是否激活
         th 更新时间
+        th(ng-if='user.isAdmin') 订阅用户
         th 操作
     tr(ng-repeat='item in articleList.docs')
         td
@@ -34,6 +35,9 @@ table.article-list
             span(ng-if='item.recommend.length==0') 否
         td(ng-if='user.isAdmin', ng-bind="item.isActive ? '是' : '否' ")
         td(ng-bind="item.published | date:'yyyy-MM-dd' ")
+        td(ng-if='user.isAdmin')
+            select(ng-init='selectedName = item.subscribe[0]', ngc-select-search, ng-model='selectedName', ng-options='x for x in item.subscribe', size=2, style="width:90px;")
+            a(ng-if='user.isAdmin', href='javascript:;', ng-click='unsubscribeByID(item._id, selectedName)') 取消订阅
         td
             a(href='javascript:;', ng-click='deleteByID(item._id,false)') [删除]
             a(ng-if='user.isAdmin', href='javascript:;', ng-click='modifyByID(item._id,item.columnID)') [修改]

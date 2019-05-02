@@ -79,6 +79,44 @@ export default function Controller($scope,$state,$stateParams,TextSer,CommonJs,F
 
 	$scope.unMarkArticle = unMarkArticle;
 
+	$scope.unsubscribeByID = unsubscribeByID;
+
+	function unsubscribeByID(id, username) {
+		if (username === 'admin') {
+			return;
+		}
+		var articleModel = $scope.articleList.docs.find(item => item._id === id);
+
+		articleModel.published = new Date(articleModel.published);
+
+		if (articleModel.subscribe.includes(username)) {
+
+			articleModel.subscribe.splice(articleModel.subscribe.indexOf(username), 1);
+
+			if (articleModel.mark.includes(username)) {
+
+				articleModel.mark.splice(articleModel.mark.indexOf(username), 1);
+
+			}
+
+			if (articleModel.add.includes(username)) {
+
+				articleModel.add.splice(articleModel.mark.indexOf(username), 1);
+
+			}
+
+			if (!articleModel.trash.includes(username)) {
+
+				articleModel.trash.splice(articleModel.mark.indexOf(username), 1);
+
+			}
+
+			$scope.articleModel = articleModel;
+
+			sendModifyArticle(id);
+		}
+	}
+
 	function markArticle(id, cid) {
 
 		var articleModel = $scope.articleList.docs.find(item => item._id === id);
@@ -150,7 +188,7 @@ export default function Controller($scope,$state,$stateParams,TextSer,CommonJs,F
 					pageConfig.total = response.result.total;
 
 					// 为每篇文章添加 是否选中状态
-					angular.forEach(result.docs,function(value){
+					angular.forEach(result.docs, function (value) {
 
 						value.state = false;
 
@@ -172,22 +210,22 @@ export default function Controller($scope,$state,$stateParams,TextSer,CommonJs,F
 
 	// 文章模型
 	$scope.articleModel = {
-		'title' : '',
-		'isActive' : true,
-		'recommend' : [],
-		'columnID' : '',
-		'columnName' : '',
-		'author' : '',
-		'clickVolume' : '',
-		'forceUrl' : '',
-		'articleCover' : 'images/image.jpg',
-		'published' : new Date(),
-		'articleBrief' : '',
-		'articleContent' : '',
-		'pagetitle' : '',
-		'pagekeywords' : '',
-		'pagedescription' : '',
-		'language' : 'ch',
+		'title': '',
+		'isActive': true,
+		'recommend': [],
+		'columnID': '',
+		'columnName': '',
+		'author': '',
+		'clickVolume': '',
+		'forceUrl': '',
+		'articleCover': 'images/image.jpg',
+		'published': new Date(),
+		'articleBrief': '',
+		'articleContent': '',
+		'pagetitle': '',
+		'pagekeywords': '',
+		'pagedescription': '',
+		'language': 'ch',
 		'comments': [],
 		'mark': [],
 		'catalog': [],
@@ -197,10 +235,10 @@ export default function Controller($scope,$state,$stateParams,TextSer,CommonJs,F
 	};
 
 	// 将文章模型复制一份到源中 以备使用
-	Object.assign(articleModelOrigin,$scope.articleModel);
+	Object.assign(articleModelOrigin, $scope.articleModel);
 
 	// 更新 是否推荐
-	function updateCommand(evt,option){
+	function updateCommand(evt, option) {
 
 		// 是否选中状态
 		var checked = evt.target.checked;
@@ -212,17 +250,17 @@ export default function Controller($scope,$state,$stateParams,TextSer,CommonJs,F
 		var index = recommend.indexOf(option)
 
 		// 选中状态
-		if(checked){
+		if (checked) {
 
 			// 将当前选项放入结果数组
 			recommend.push(option);
 
-		}else{
+		} else {
 
 			// 取消选中,将选中从结果数组中删除
-			if(index != -1){
+			if (index != -1) {
 
-				recommend.splice(index,1);
+				recommend.splice(index, 1);
 
 			}
 		}
@@ -230,37 +268,37 @@ export default function Controller($scope,$state,$stateParams,TextSer,CommonJs,F
 	}
 
 	// 根据栏目模型弹出对应表单
-	function addContent(model){
+	function addContent(model) {
 
 		// 添加 非修改
-		$scope.sign = { isModify : false,modifyID : 0 };
+		$scope.sign = {isModify: false, modifyID: 0};
 
-		if(model == 'article'){
+		if (model == 'article') {
 
-			CommonJs.getCurrentLang(Token,function(language){
+			CommonJs.getCurrentLang(Token, function (language) {
 
 				// 当前语言
 				var currentLanguage = language.lang_field;
 
-				TextSer.getAllColumn(Token,currentLanguage).then(response=>{
+				TextSer.getAllColumn(Token, currentLanguage).then(response => {
 
 					var response = response.data;
 
 					// 检查令牌是否失效
-					if(CommonJs.checkRequestCode(response.code)) return;
+					if (CommonJs.checkRequestCode(response.code)) return;
 
-					if(!response.code){
+					if (!response.code) {
 
 						$scope.allColumns = response.result;
 
 						articleTrigger.trigger('click');
 
-					}else{
+					} else {
 
-						swal("栏目信息获取失败","","error");
+						swal("栏目信息获取失败", "", "error");
 
 					}
-					
+
 
 				})
 
@@ -271,7 +309,7 @@ export default function Controller($scope,$state,$stateParams,TextSer,CommonJs,F
 	}
 
 	// 添加文章
-	function addArticle(){
+	function addArticle() {
 
 		// 获取栏目简介
 		$scope.articleModel.articleBrief = EdtorModule.articleIns.$txt.html();
@@ -280,28 +318,28 @@ export default function Controller($scope,$state,$stateParams,TextSer,CommonJs,F
 		$scope.articleModel.articleContent = EdtorModule.articleCon.$txt.html();
 
 		// 筛选网站公告名称
-		angular.forEach($scope.allColumns,function(value){
+		angular.forEach($scope.allColumns, function (value) {
 
-			if(value._id == $scope.articleModel.columnID){
+			if (value._id == $scope.articleModel.columnID) {
 
 				$scope.articleModel.columnName = value.title;
 
 			}
 
 		});
-		
 
-		if(!$.trim($scope.articleModel.title)){
 
-			swal("文章添加失败","文章标题不能为空","error");
+		if (!$.trim($scope.articleModel.title)) {
+
+			swal("文章添加失败", "文章标题不能为空", "error");
 
 			return;
 
 		}
 
-		if(!$.trim($scope.articleModel.columnID)){
+		if (!$.trim($scope.articleModel.columnID)) {
 
-            $scope.articleModel.columnID = $scope.allColumns[0]._id;
+			$scope.articleModel.columnID = $scope.allColumns[0]._id;
 
 			return;
 		}
@@ -331,15 +369,15 @@ export default function Controller($scope,$state,$stateParams,TextSer,CommonJs,F
 		}
 
 		// 发送添加文章请求
-		TextSer.addArticle($scope.articleModel,Token).then(response=>{
+		TextSer.addArticle($scope.articleModel, Token).then(response => {
 
 			var response = response.data;
 
 			// 检查令牌是否失效
-			if(CommonJs.checkRequestCode(response.code)) return;
+			if (CommonJs.checkRequestCode(response.code)) return;
 
 			// 如果文章添加成功
-			if(!response.code){
+			if (!response.code) {
 
 				// 关闭添加栏目弹出层
 				$.fancybox.close();
@@ -353,46 +391,46 @@ export default function Controller($scope,$state,$stateParams,TextSer,CommonJs,F
 			}
 
 			// 提示添加成功与否的信息
-			swal(response.message,"");
+			swal(response.message, "");
 
-			setTimeout(()=>{
+			setTimeout(() => {
 
 				//关闭弹出
 				swal.close();
 
-			},1000);
+			}, 1000);
 
 		});
 
 	}
 
 	// 修改文章 获取指定文章信息
-	function modifyByID(id,cid){
-		
-		$scope.sign = { isModify : true,modifyID : id };
+	function modifyByID(id, cid) {
+
+		$scope.sign = {isModify: true, modifyID: id};
 
 		// 根据栏目ID获取栏目模型
-		TextSer.getModelByCID(Token,cid).then(response=>{
+		TextSer.getModelByCID(Token, cid).then(response => {
 
 			var response = response.data;
 
 			// 检查令牌是否失效
-			if(CommonJs.checkRequestCode(response.code)) return;
+			if (CommonJs.checkRequestCode(response.code)) return;
 
-			if(!response.code){
+			if (!response.code) {
 
 				// 栏目模型
 				var model = response.result.model
 
 				// 根据ID获取指定文章信息
-				TextSer.getArticleByID(id,Token).then(response=>{
+				TextSer.getArticleByID(id, Token).then(response => {
 
 					var response = response.data;
 
 					// 获取成功
-					if(!response.code){
+					if (!response.code) {
 
-						if(model == 'article'){
+						if (model == 'article') {
 
 							var result = response.result
 
@@ -411,24 +449,24 @@ export default function Controller($scope,$state,$stateParams,TextSer,CommonJs,F
 							articleTrigger.trigger('click');
 
 						}
-					
+
 					}
 
 				});
 
-			}else{
+			} else {
 
-				swal("栏目模型获取失败","","error");
+				swal("栏目模型获取失败", "", "error");
 
 			}
-			
+
 
 		})
 
 	}
 
 	// 修改文章 发送修改请求
-	function sendModifyArticle(modifyID){
+	function sendModifyArticle(modifyID) {
 
 		// 获取栏目简介
 		$scope.articleModel.articleBrief = EdtorModule.articleIns.$txt.html();
@@ -436,24 +474,24 @@ export default function Controller($scope,$state,$stateParams,TextSer,CommonJs,F
 		// 获取栏目内容
 		$scope.articleModel.articleContent = EdtorModule.articleCon.$txt.html();
 
-		if(!$.trim($scope.articleModel.title)){
+		if (!$.trim($scope.articleModel.title)) {
 
-			swal("文章添加失败","文章标题不能为空","error");
+			swal("文章添加失败", "文章标题不能为空", "error");
 
 			return;
 
 		}
 
 		// 根据ID修改指定文章
-		TextSer.modifyByID($scope.articleModel,modifyID,Token).then(response=>{
+		TextSer.modifyByID($scope.articleModel, modifyID, Token).then(response => {
 
 			var response = response.data;
 
 			// 检查令牌是否失效
-			if(CommonJs.checkRequestCode(response.code)) return;
+			if (CommonJs.checkRequestCode(response.code)) return;
 
 			// 修改成功
-			if(!response.code){
+			if (!response.code) {
 
 				$.fancybox.close();
 
@@ -466,21 +504,21 @@ export default function Controller($scope,$state,$stateParams,TextSer,CommonJs,F
 			}
 
 			// 提示添加成功与否的信息
-			swal(response.message,"");
+			swal(response.message, "");
 
-            setTimeout(()=>{
+			setTimeout(() => {
 
-                //关闭弹出
-                swal.close();
+				//关闭弹出
+				swal.close();
 
-            },1000);
+			}, 1000);
 
 		})
 
 	}
 
 	// 文章封面上传
-	function uploadArticlefile(){
+	function uploadArticlefile() {
 
 		var uploader = $scope.uploader = new FileUploader({
 			url: `${CommonJs.SERVER_PATH}fileUpload`
@@ -496,21 +534,21 @@ export default function Controller($scope,$state,$stateParams,TextSer,CommonJs,F
 
 		uploader.onErrorItem = fileItem => {
 
-			swal("文件上传失败","","error");
+			swal("文件上传失败", "", "error");
 
 		};
 
 	}
 
 	// 初始化编辑器
-	function initEditor(){
+	function initEditor() {
 
 		wangEditor.config.printLog = false;
 
 		let articleIns = new wangEditor('article-ins');
 		let articleCon = new wangEditor('article-con');
 
-		articleIns.config.menus = $.map(wangEditor.config.menus,(item, key)=>{
+		articleIns.config.menus = $.map(wangEditor.config.menus, (item, key) => {
 
 		    return item === 'location' ? null : item;
 
@@ -522,15 +560,15 @@ export default function Controller($scope,$state,$stateParams,TextSer,CommonJs,F
 		articleIns.$editorContainer.css('z-index', 20);
 		articleCon.$editorContainer.css('z-index', 10);
 
-		return { articleIns,articleCon }
+		return {articleIns, articleCon}
 
 	}
 
 	// 清空文章表单信息
-	function resizeArticle(){
+	function resizeArticle() {
 
 		// 清空本次添加文章的值
-		Object.assign($scope.articleModel,articleModelOrigin);
+		Object.assign($scope.articleModel, articleModelOrigin);
 
 		// 获取栏目简介
 		$scope.articleModel.articleBrief = EdtorModule.articleIns.$txt.html('<p><br></p>');
@@ -542,20 +580,20 @@ export default function Controller($scope,$state,$stateParams,TextSer,CommonJs,F
 
 
 	// [全选]
-	function selectAll(){
+	function selectAll() {
 
-		angular.forEach($scope.articleList.docs,function(value){
+		angular.forEach($scope.articleList.docs, function (value) {
 
 			value.state = true;
 
 		});
-		
+
 	}
 
 	// [反选]
-	function convertAll(){
+	function convertAll() {
 
-		angular.forEach($scope.articleList.docs,function(value){
+		angular.forEach($scope.articleList.docs, function (value) {
 
 			value.state = !value.state;
 
@@ -564,9 +602,9 @@ export default function Controller($scope,$state,$stateParams,TextSer,CommonJs,F
 	}
 
 	// [全不选]
-	function cancelALL(){
+	function cancelALL() {
 
-		angular.forEach($scope.articleList.docs,function(value){
+		angular.forEach($scope.articleList.docs, function (value) {
 
 			value.state = false;
 
@@ -575,13 +613,13 @@ export default function Controller($scope,$state,$stateParams,TextSer,CommonJs,F
 	}
 
 	// [批量删除]
-	function deleteMany(){
+	function deleteMany() {
 
 		var sign = false;
 
-		angular.forEach($scope.articleList.docs,function(value){
+		angular.forEach($scope.articleList.docs, function (value) {
 
-			if(value.state){
+			if (value.state) {
 
 				sign = true;
 
@@ -589,24 +627,24 @@ export default function Controller($scope,$state,$stateParams,TextSer,CommonJs,F
 
 		});
 
-		if(sign){
+		if (sign) {
 
 			swal({
-				title:"您确定要删除吗?",
+				title: "您确定要删除吗?",
 				text: "",
 				type: "warning",
 				showCancelButton: true,
 				confirmButtonColor: "#DD6B55",
-				confirmButtonText:"确定",
-				cancelButtonText:'取消',
+				confirmButtonText: "确定",
+				cancelButtonText: '取消',
 				closeOnConfirm: false
-			},function(){
+			}, function () {
 
-				angular.forEach($scope.articleList.docs,function(value){
+				angular.forEach($scope.articleList.docs, function (value) {
 
-					if(value.state){
+					if (value.state) {
 
-						deleteByID(value._id,true);
+						deleteByID(value._id, true);
 
 					}
 
@@ -614,49 +652,49 @@ export default function Controller($scope,$state,$stateParams,TextSer,CommonJs,F
 
 			});
 
-		}else{
+		} else {
 
-			swal('请选择要删除的文章','','error');
+			swal('请选择要删除的文章', '', 'error');
 
 		}
 
 	}
 
 	// 页面操作 单个文章切换状态
-	function toggle(index,state){
+	function toggle(index, state) {
 
 		$scope.articleList.docs[index].state = state;
 
 	}
 
 	// 搜索文章
-	function search(key){
+	function search(key) {
 
 		$scope.keys = key;
 
-		if(!key){
+		if (!key) {
 
-			swal("搜索失败","请输入搜索关键字","error");
+			swal("搜索失败", "请输入搜索关键字", "error");
 			return;
 		}
 
-		CommonJs.getCurrentLang(Token,function(language){
+		CommonJs.getCurrentLang(Token, function (language) {
 
 			TextSer.search({
-				key : key,
-				Token : Token,
+				key: key,
+				Token: Token,
 				page: pageConfig.page,
-				limit : 15,
-				language:language.lang_field,
+				limit: 15,
+				language: language.lang_field,
 				username: $scope.user.username
-			}).then(response=>{
+			}).then(response => {
 
 				// 检查令牌是否失效
-				if(CommonJs.checkRequestCode(response.code)) return;
+				if (CommonJs.checkRequestCode(response.code)) return;
 
 				var response = response.data;
 
-				if(!response.code){
+				if (!response.code) {
 
 					var result = response.result;
 
@@ -665,7 +703,7 @@ export default function Controller($scope,$state,$stateParams,TextSer,CommonJs,F
 					pageConfig.total = response.result.total;
 
 					// 为每篇文章添加 是否选中状态
-					angular.forEach(result.docs,function(value){
+					angular.forEach(result.docs, function (value) {
 
 						value.state = false;
 
@@ -674,12 +712,12 @@ export default function Controller($scope,$state,$stateParams,TextSer,CommonJs,F
 					// 展示数据
 					$scope.articleList = result;
 
-				}else{
+				} else {
 
-					swal("搜索失败",response.message,"error");
+					swal("搜索失败", response.message, "error");
 
 				}
-				
+
 
 			});
 
@@ -688,19 +726,18 @@ export default function Controller($scope,$state,$stateParams,TextSer,CommonJs,F
 	}
 
 
-
 	// 文章列表分页
-	function pagination(page){
+	function pagination(page) {
 
 		pageConfig.page = page;
 
-		if(!$scope.keys){
+		if (!$scope.keys) {
 
 			// 获取文章列表
 			getArticleList();
 			return;
 
-		}else{
+		} else {
 
 			search($scope.keys);
 
@@ -709,39 +746,39 @@ export default function Controller($scope,$state,$stateParams,TextSer,CommonJs,F
 	}
 
 	// 重置搜索
-	function reset(){
+	function reset() {
 		$scope.keys = '';
 		getArticleList();
 	}
 
 	// 根据ID删除文章
-	function deleteByID(ID,flag){
+	function deleteByID(ID, flag) {
 
-		if(!ID){
+		if (!ID) {
 
-			swal("删除文章的ID不能为空",response.message,"error");
+			swal("删除文章的ID不能为空", response.message, "error");
 
 			return;
 		}
 
 		// flag true 为批量删除 false 为单个删除
 
-		if(flag){
+		if (flag) {
 
 			sendDelete(ID);
 
-		}else{
+		} else {
 
 			swal({
-				title:"您确定要删除吗?",
+				title: "您确定要删除吗?",
 				text: "删除后可在“垃圾管理”找回!",
 				type: "warning",
 				showCancelButton: true,
 				confirmButtonColor: "#DD6B55",
-				confirmButtonText:"确定",
-				cancelButtonText:'取消',
+				confirmButtonText: "确定",
+				cancelButtonText: '取消',
 				closeOnConfirm: false
-			},function(){
+			}, function () {
 
 				sendDelete(ID);
 
@@ -752,7 +789,7 @@ export default function Controller($scope,$state,$stateParams,TextSer,CommonJs,F
 	}
 
 	// 发送删除请求
-	function sendDelete(ID){
+	function sendDelete(ID) {
 
 		if ($scope.user.isAdmin) {
 			// 发送删除请求
@@ -801,10 +838,8 @@ export default function Controller($scope,$state,$stateParams,TextSer,CommonJs,F
 
 				$scope.articleModel = articleModel;
 
-				sendModifyArticle(ID)
-
+				sendModifyArticle(ID);
 			}
-
 		}
 
 	}
