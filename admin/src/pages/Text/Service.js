@@ -82,6 +82,18 @@ export default angular.module('TextService',[])
 				});
 
 			},
+
+			// 过滤用户
+			filterUser(params){
+
+				return $http({
+					method:'get',
+					url:`${SERVER_PATH}article/filterUser`,
+					params:params
+				});
+
+			},
+
 			// 获取文章总数
 			getCount(params){
 

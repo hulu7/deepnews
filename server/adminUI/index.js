@@ -74,6 +74,9 @@ exports.start = function(app){
 	// 根据关键字搜索文章
 	app.get('/article/search',[jwtauth],article.search);
 
+	// 过滤用户
+	app.get('/article/filterUser',[jwtauth],article.filterUser);
+
     app.get('/article/searchMarked',[jwtauth],article.searchMarked);
 
 	app.get('/article/searchAdded',[jwtauth],article.searchAdded);

@@ -209,6 +209,34 @@ exports.search = function(req,res){
 
 }
 
+// 过滤用户
+exports.filterUser = function(req,res){
+
+	var page = Number(req.query.page) || 1,
+		limit = Number(req.query.limit) || 10,
+		key = req.query.key,
+		language = req.query.language || 'ch',
+		username = req.query.username;
+
+	if(!username){
+
+		res.json({code:2,message:'用户名不能为空'});
+
+		return;
+
+	}
+
+	var reg_key = new RegExp(key);
+	var reg_username = new RegExp(username);
+
+	articleModel.paginate({language:language,title:{$in:[reg_key]},subscribe:{$in:[reg_username]}},{page: page, limit: limit, sort:{published:-1}},function(err,result){
+
+		err ? res.json({code:1,message:'根据用户名过滤搜索文章列表失败'}) : res.json({code:0,message:'根据用户名过滤搜索文章列表获取成功',result:result});
+
+
+	});
+
+}
 
 exports.searchMarked = function(req,res){
 

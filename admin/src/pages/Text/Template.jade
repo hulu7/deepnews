@@ -4,6 +4,7 @@
     button.button.fl.mr(ng-click='convertAll()') 反选
     button.button.fl.mr(ng-click='cancelALL()') 全不选
     button.button.fl.mr(ng-click='deleteMany()') 批量删除
+    select(ng-if='user.isAdmin', ng-click='getUserList()', size=2, style="width:150px;", ng-init='selectedUser = users[0]', ng-model='selectedUser', ng-options='x for x in users', ng-dblclick="startFilter(selectedUser)")
     .search-key.fr
         .input-group
             input.form-control(type='text', placeholder='请输入搜索关键字', autocomplete='off',ng-model='key')
@@ -36,7 +37,7 @@ table.article-list
         td(ng-if='user.isAdmin', ng-bind="item.isActive ? '是' : '否' ")
         td(ng-bind="item.published | date:'yyyy-MM-dd' ")
         td(ng-if='user.isAdmin')
-            select(ng-init='selectedName = item.subscribe[0]', ngc-select-search, ng-model='selectedName', ng-options='x for x in item.subscribe', size=2, style="width:90px;")
+            select(ng-init='selectedName = item.subscribe[0]', ng-model='selectedName', ng-options='x for x in item.subscribe', size=2, style="width:90px;")
             a(ng-if='user.isAdmin', href='javascript:;', ng-click='unsubscribeByID(item._id, selectedName)') 取消订阅
         td
             a(href='javascript:;', ng-click='deleteByID(item._id,false)') [删除]

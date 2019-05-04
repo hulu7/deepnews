@@ -1,4 +1,4 @@
-export default function Controller($scope,$state,$stateParams,TextSer,CommonJs,FileUploader){
+export default function Controller($scope,$state,$stateParams,TextSer,CommonJs,FileUploader, UserSer){
 
 	// 获取登录token
 	const Token = window.localStorage.getItem('Token');
@@ -80,6 +80,99 @@ export default function Controller($scope,$state,$stateParams,TextSer,CommonJs,F
 	$scope.unMarkArticle = unMarkArticle;
 
 	$scope.unsubscribeByID = unsubscribeByID;
+
+    $scope.getUserList = getUserList;
+
+    $scope.startFilter = startFilter;
+
+	$scope.isFiltering = false;
+
+    function startFilter(selectedUser) {
+
+		$scope.selectedUser = selectedUser;
+		$scope.isFiltering = true;
+
+		searchArticleByUserName($scope.selectedUser)
+    }
+
+    function searchArticleByUserName(userName) {
+		CommonJs.getCurrentLang(Token, function (language) {
+
+			TextSer.filterUser({
+				key: $scope.keys,
+				Token: Token,
+				page: pageConfig.page,
+				limit: 15,
+				language: language.lang_field,
+				username: userName
+			}).then(response => {
+
+				// 检查令牌是否失效
+				if (CommonJs.checkRequestCode(response.code)) return;
+
+				var response = response.data;
+
+				if (!response.code) {
+
+					var result = response.result;
+
+					pageConfig.page = response.result.page;
+					pageConfig.pageSize = response.result.limit;
+					pageConfig.total = response.result.total;
+
+					// 为每篇文章添加 是否选中状态
+					angular.forEach(result.docs, function (value) {
+
+						value.state = false;
+
+					});
+
+					// 展示数据
+					$scope.articleList = result;
+
+				} else {
+
+					swal("根据用户名过滤文章失败", response.message, "error");
+
+				}
+
+			});
+
+		});
+	}
+
+    function getUserList(){
+        UserSer.getUserList({
+            page : pageConfig.page,
+            limit : pageConfig.pageSize,
+            Token : Token,
+        }).then(response=>{
+
+            var response = response.data;
+
+            // 检查令牌是否失效
+            if(CommonJs.checkRequestCode(response.code)) return;
+
+            // 获取成功
+            if(!response.code){
+
+                pageConfig.page = response.result.page;
+                pageConfig.pageSize = response.result.limit;
+                pageConfig.total = response.result.total;
+
+                var result = response.result;
+                $scope.users = [];
+                // 为每篇文章添加 是否选中状态
+                angular.forEach(result.docs,function(val){
+
+                    val.state = false;
+                    $scope.users.push(val.username);
+                });
+
+            }
+
+        })
+    }
 
 	function unsubscribeByID(id, username) {
 		if (username === 'admin') {
@@ -669,7 +762,7 @@ export default function Controller($scope,$state,$stateParams,TextSer,CommonJs,F
 
 	// 搜索文章
 	function search(key) {
-
+		$scope.isFiltering = false;
 		$scope.keys = key;
 
 		if (!key) {
@@ -731,7 +824,7 @@ export default function Controller($scope,$state,$stateParams,TextSer,CommonJs,F
 
 		pageConfig.page = page;
 
-		if (!$scope.keys) {
+		if (!$scope.isFiltering && !$scope.keys) {
 
 			// 获取文章列表
 			getArticleList();
@@ -739,8 +832,15 @@ export default function Controller($scope,$state,$stateParams,TextSer,CommonJs,F
 
 		} else {
 
-			search($scope.keys);
+			if ($scope.isFiltering) {
 
+				searchArticleByUserName($scope.selectedUser);
+
+			} else {
+
+				search($scope.keys);
+
+			}
 		}
 
 	}
@@ -748,6 +848,7 @@ export default function Controller($scope,$state,$stateParams,TextSer,CommonJs,F
 	// 重置搜索
 	function reset() {
 		$scope.keys = '';
+		$scope.isFiltering = false;
 		getArticleList();
 	}
 
@@ -848,4 +949,4 @@ export default function Controller($scope,$state,$stateParams,TextSer,CommonJs,F
 
 }
 
-Controller.$inject = ['$scope','$state','$stateParams','TextSer','CommonJs','FileUploader'];
+Controller.$inject = ['$scope','$state','$stateParams','TextSer','CommonJs','FileUploader','UserSer'];
