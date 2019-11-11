@@ -1,1 +1,11 @@
-{"rootDir":"http://localhost:3000","webTitle":"DeepINews深度资讯","webLogo":"","WordLogo":"DeepINews深度资讯","description":"DeepINews深度资讯","keywords":"","copyright":"copyright @deepinews 2019","recordNumber":"","language":"ch"}
+{
+  "rootDir":"http://localhost:3000",
+  "webTitle":"DeepINews深度资讯",
+  "webLogo":"",
+  "WordLogo":"DeepINews深度资讯",
+  "description":"DeepINews深度资讯",
+  "keywords":"",
+  "copyright":"Copyright @深度资讯 2019",
+  "recordNumber":"",
+  "language":"ch"
+}

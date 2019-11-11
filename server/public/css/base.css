@@ -1,7 +1,7 @@
 @charset "utf-8";
 /* 样式重置 */
 body,h1,h2,h3,h4,h5,h6,hr,p,dl,dt,dd,ul,ol,li,form,fieldset,button,input,textarea,img,th,td,select{margin:0;padding:0;}
-body{font:12px/1.14 "Microsoft YaHei",Arial,"\5fae\8f6f\96c5\9ed1";word-wrap:break-word;color:#666;background-color:#f6f6f6;text-align:center;-webkit-text-size-adjust:none;-webkit-tap-highlight-color:rgba(0,0,0,0);cursor:url(../images/default.cur),default;}
+body{font:12px/1.14 "Microsoft YaHei",Arial,"\5fae\8f6f\96c5\9ed1";word-wrap:break-word;color:#666;background-color:#fff;text-align:center;-webkit-text-size-adjust:none;-webkit-tap-highlight-color:rgba(0,0,0,0);cursor:url(../images/default.cur),default;}
 textarea,input,button,select,legend{font:12px/1.14 arial,"\5fae\8f6f\96c5\9ed1";color:#333;outline:none;border:none;*font-size:100%;*border:0;vertical-align:top;background:none;}
 h1,h2,h3,h4,h5,h6{font-size:16px;font-weight:normal;}
 a{text-decoration:none;color:#666;outline:none;zoom:1;line-height:normal;transition:color 0.2s}
@@ -53,6 +53,7 @@ a,button,input[type="button"],input[type="submit"]{cursor:url(../images/link.cur
 .nobg{background:none!important;}
 .edits li{list-style-type:disc;list-style-position:inside;}
 .w1200{width:1200px;margin:0 auto;text-align:left;height:100%;}
+.w100{width:100%;margin:0 auto;text-align:left;height:10px;}
 body{overflow-x:hidden;}
 @font-face {font-family: "iconfont";
   src: url('font/iconfont.eot?t=1489637888962');

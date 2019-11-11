@@ -1,18 +1,4 @@
 .sideBar.fr
 	.section
-		h5 最新文章
-		ul.section-list
-			each item in lasted
-				li 
-					span.fr #{moment(item.published).format("YYYY-MM-DD")}
-					a(href='/article?id=#{item._id}') #{item.title}
-	.Hematemesis
-		h4.ibox 强烈推荐
-		h2.comand-title
-			a(href='#{strongly.forceUrl}' target='_blank') #{strongly.title}
-		.instro !{strongly.articleBrief}
-	#tag-cloud.section
-		h5 视频教程
-		.cloud.clearfix
-			each item in secondColumns
-				a(href="#{item.link}?name=#{item.title}") #{item.title}
+		p.info-header 关于@深度资讯
+		p.info-header 邮件：deepinewsservice@163.com
