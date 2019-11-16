@@ -1,0 +1,85 @@
+.left-bar-content {
+  width: 1200px;
+  margin: 0 auto;
+  min-height: 1500px;
+}
+
+.logo {
+  float: left;
+  height: 50px;
+}
+
+.left-bar-button-base {
+  float: left;
+  width: 78px;
+  background-color: #ffffff;
+  font-family: 'Montserrat', sans-serif;
+  -webkit-transition: all 0.2s ease;
+  transition: all 0.2s ease;
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 16px;
+  padding: 8.3px 16px;
+  border-radius: 3px;
+  border: 0 !important;
+  cursor: pointer;
+  color: #444;
+  position: relative;
+  margin-left: -110px;
+}
+
+.left-bar-button-base:hover {
+  background-color: #f66d29;
+}
+
+.left-bar-button-technology {
+  @extend .left-bar-button-base;
+  margin-top: 66px;
+}
+
+.left-bar-button-technology-selected {
+  @extend .left-bar-button-technology;
+  background-color: #f66d29;
+}
+
+.left-bar-button-finance {
+  @extend .left-bar-button-base;
+  margin-top: 106px;
+}
+
+.left-bar-button-finance-selected {
+  @extend .left-bar-button-finance;
+  background-color: #f66d29;
+}
+
+.left-bar-button-house {
+  @extend .left-bar-button-base;
+  margin-top: 146px;
+}
+
+.left-bar-button-house-selected {
+  @extend .left-bar-button-house;
+  background-color: #f66d29;
+}
+
+.left-bar-button-car {
+  @extend .left-bar-button-base;
+  margin-top: 186px;
+}
+
+.left-bar-button-car-selected {
+  @extend .left-bar-button-car;
+  background-color: #f66d29;
+}
+
+.left-bar-button-culture {
+  @extend .left-bar-button-base;
+  margin-top: 226px;
+}
+
+.left-bar-button-culture-selected  {
+  @extend .left-bar-button-culture;
+  background-color: #f66d29;
+}
+
+

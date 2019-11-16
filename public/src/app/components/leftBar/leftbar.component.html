@@ -1,0 +1,8 @@
+<div class="left-bar-content">
+    <img class="logo" src="/img/logo.png">
+    <a [ngClass]="{'left-bar-button-technology-selected': buttonStatus.technology, 'left-bar-button-technology': !buttonStatus.technology}" target="_blank" (click)="selectTechnology()">科技</a>
+    <a [ngClass]="{'left-bar-button-finance-selected': buttonStatus.finance, 'left-bar-button-finance': !buttonStatus.finance}" target="_blank" (click)="selectFinance()">财经</a>
+    <a [ngClass]="{'left-bar-button-house-selected': buttonStatus.house, 'left-bar-button-house': !buttonStatus.house}" target="_blank" (click)="selectHouse()">房产</a>
+    <a [ngClass]="{'left-bar-button-car-selected': buttonStatus.car, 'left-bar-button-car': !buttonStatus.car}" target="_blank" (click)="selectCar()">汽车</a>
+    <a [ngClass]="{'left-bar-button-culture-selected': buttonStatus.culture, 'left-bar-button-culture': !buttonStatus.culture}" target="_blank" (click)="selectCulture()">文化</a>
+</div>

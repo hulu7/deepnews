@@ -60,5 +60,4 @@ exports.start = app=>{
 
 	// 404
 	app.use(middleware.error);
-
 }

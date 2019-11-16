@@ -146,7 +146,9 @@ exports.validLoginStaus = function(req,res){
 
 }
 
-
+exports.currentDate = function (req, res) {
+	res.send({code:0, date: new Date()})
+}
 
 
 

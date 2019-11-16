@@ -1,4 +1,39 @@
-// component styles are encapsulated and only applied to their components
-* {
-  color: #FFEF00;
+header {
+  z-index: 1000;
+  background-color: #27282d;
+  height: 35px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+.header-content {
+  font-size: 14px;
+}
+
+.complain-button {
+  position: relative;
+  vertical-align: middle;
+  float: right;
+  margin-top: 8px;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.home-button {
+  position: relative;
+  vertical-align: middle;
+  float: left;
+  margin-top: 8px;
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+.date-pad {
+  position: relative;
+  vertical-align: middle;
+  float: left;
+  margin-top: 8px;
+  margin-left: 10px;
 }

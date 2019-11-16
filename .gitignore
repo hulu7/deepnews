@@ -3,7 +3,8 @@
 
 # Node Files #
 /admin/node_modules/*
-/server/node_modules/*
+/public/node_modules/*
+/public/dist/*
 
 # package-lock #
 package-lock.json

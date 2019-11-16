@@ -149,4 +149,9 @@ exports.start = function(app){
 	// 根据ID删除语言
 	app.get('/language/deleteLangById',[jwtauth],language.deleteLangById);
 
+	//Public APIs
+	app.get('/api/article/getArticle', article.getArticleListContinue);
+
+	app.get('/api/currentDate', login.currentDate);
+
 }
