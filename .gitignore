@@ -4,6 +4,8 @@
 # Node Files #
 /admin/node_modules/*
 /public/node_modules/*
+
+# Build Files #
 /public/dist/*
 
 # package-lock #

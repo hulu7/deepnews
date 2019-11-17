@@ -10,6 +10,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { ComplainComponent } from './components/complain/complain.component';
 import { ContentComponent } from './components/content/content.component';
 import { LeftbarComponent } from './components/leftBar/leftbar.component';
+import { RightbarComponent } from './components/rightBar/rightbar.component';
 import { ListContentComponent } from './components/listContent/listContent.component';
 import { ApiService } from './servcies';
 import { ListContentService } from './servcies/listContentService';
@@ -33,6 +34,7 @@ import { removeNgStyles, createNewHosts } from '@angularclass/hmr';
     FooterComponent,
     ContentComponent,
     LeftbarComponent,
+    RightbarComponent,
     ListContentComponent
   ],
   providers: [

@@ -1,3 +1,7 @@
+.font {
+  font-family: PingFang SC,Hiragino Sans GB,Microsoft YaHei,WenQuanYi Micro Hei,Helvetica Neue,Arial,sans-serif;
+}
+
 .main-content {
   width: 1200px;
   margin: 0 auto;
@@ -11,21 +15,25 @@
   margin-right: 30px;
   background-color: #ffffff;
   position: fixed;
+  @extend .font;
+
 }
 
 .list-content {
   float: left;
   width: 670px;
   height: 600px;
-  background: greenyellow;
+  background: #ffffff;
   margin-left: 138px;
 }
 
 .right-bar {
-  float: right;
+  float: left;
   width: 360px;
   height: 600px;
-  background: #1b6d85;
+  background: #ffffff;
+  margin-left: 830px;
+  position: fixed;
 }
 
 

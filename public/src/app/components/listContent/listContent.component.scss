@@ -1,14 +1,74 @@
-.list-content-body {
+.font {
+  font-family: PingFang SC,Hiragino Sans GB,Microsoft YaHei,WenQuanYi Micro Hei,Helvetica Neue,Arial,sans-serif;
+}
 
+.list-content-body {
+  margin-top: -38px;
+}
+
+a {
+  text-decoration: none;
 }
 
 .article-box {
   height: 113px;
   position: relative;
+  border-bottom: 1px solid #e8e8e8;
 }
 
-.article-content {
-  padding-top: 0;
+.article-catalog {
+  @extend .font;
+  color: #ffffff;
+  background: #87A5B5;
+  position: relative;
+  font-size: 12px;
+  top: 25px;
+  right: 300px;
+  padding: 1px 2px;
+  cursor: pointer;
+}
+
+.article-title {
+  @extend .font;
+  padding: 5px 5px 5px 5px;
+  display: inline-block;
+  text-align: left;
+  margin-left: 40px;
+  font-weight: bold;
+  color: #222222;
+  width: 590px;
+  font-size: 18px;
+  line-height: 1.2;
+}
+
+.article-footer {
+  position: relative;
+  display: inline-block;
+  margin-left: 60px;
+  float: left;
+  margin-top: 5px;
+}
+
+.article-author {
+  @extend .font;
+  color: #777;
+  font-size: 14px;
+}
+
+.article-time {
+  @extend .article-author;
+}
+
+.article-loading {
+  @extend .article-author;
+  color: #222222;
+  position: relative;
+  font-size: 14px;
+  bottom: 10px;
+}
+
+.article-load-finished {
+  @extend .article-loading;
 }
 
 ul {
