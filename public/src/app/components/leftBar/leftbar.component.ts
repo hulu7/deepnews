@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { pathNameCatalogsMap } from "../../const/common-variables";
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'app-left-bar',
@@ -7,32 +9,36 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LeftbarComponent implements OnInit {
   public buttonStatus:any;
-  constructor() {
+  constructor(private router: Router) {
     this.updateButtonStatus('');
   }
 
-
   ngOnInit() {
+    this.updateButtonStatus(pathNameCatalogsMap[window.location.pathname]);
+  }
+
+  public goHome(): void {
+    this.router.navigateByUrl('');
   }
 
   public selectTechnology(): void {
-    this.updateButtonStatus('technology');
+    this.router.navigateByUrl('technology');
   }
 
   public selectFinance(): void {
-    this.updateButtonStatus('finance');
+    this.router.navigateByUrl('finance');
   }
 
   public selectHouse(): void {
-    this.updateButtonStatus('house');
+    this.router.navigateByUrl('house');
   }
 
   public selectCar(): void {
-    this.updateButtonStatus('car');
+    this.router.navigateByUrl('car');
   }
 
   public selectCulture(): void {
-    this.updateButtonStatus('culture');
+    this.router.navigateByUrl('culture');
   }
 
   private updateButtonStatus(catagory: string): void {

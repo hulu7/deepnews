@@ -12,6 +12,11 @@ import { ContentComponent } from './components/content/content.component';
 import { LeftbarComponent } from './components/leftBar/leftbar.component';
 import { RightbarComponent } from './components/rightBar/rightbar.component';
 import { ListContentComponent } from './components/listContent/listContent.component';
+import { TechnologyComponent } from './components/technologyComponent/technologyComponent.component';
+import { FinanceComponent } from "./components/financeComponent/financeComponent.component";
+import { HouseComponent } from "./components/houseComponent/houseComponent.component";
+import { CarComponent } from "./components/carComponent/carComponent.component";
+import { CultureComponent } from "./components/cultureComponent/cultureComponent.component";
 import { ApiService } from './servcies';
 import { ListContentService } from './servcies/listContentService';
 import { TimeService } from './servcies/timeService';
@@ -35,7 +40,12 @@ import { removeNgStyles, createNewHosts } from '@angularclass/hmr';
     ContentComponent,
     LeftbarComponent,
     RightbarComponent,
-    ListContentComponent
+    ListContentComponent,
+    TechnologyComponent,
+    FinanceComponent,
+    HouseComponent,
+    CarComponent,
+    CultureComponent
   ],
   providers: [
     ApiService,
