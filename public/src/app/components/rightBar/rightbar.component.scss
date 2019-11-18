@@ -20,7 +20,7 @@ button,a {
   border-right-color: #3385ff;
   border-radius: 5px;
   position: relative;
-  width: 280px;
+  width: 260px;
   height: 40px;
   font-size: 15px;
   opacity: 1;
@@ -73,8 +73,8 @@ button,a {
 .right-bar-record-contact-title {
   @extend .font;
   color: #777777;
-  width: 340px;
-  font-size: 14px;
+  width: 320px;
+  font-size: 12px;
   position: relative;
   float: left;
   padding: 10px 10px 0;
@@ -84,8 +84,8 @@ button,a {
 .right-bar-record-contact-record {
   @extend .font;
   color: #777777;
-  width: 340px;
-  font-size: 14px;
+  width: 320px;
+  font-size: 12px;
   position: relative;
   float: left;
   padding: 10px 10px 0;
