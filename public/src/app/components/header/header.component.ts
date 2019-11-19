@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { TimeService } from '../../servcies/timeService';
 import { DatePipe } from '@angular/common';
+import { PageService } from "../../servcies/pageService";
 
 @Component({
   selector: 'app-header',
@@ -11,12 +12,15 @@ import { DatePipe } from '@angular/common';
 })
 
 export class HeaderComponent implements OnInit {
-  public isHomePage: boolean = true;
+  public isHomePage: boolean;
   public date: string;
   constructor(private router: Router,
               private timeService: TimeService,
-              private datePipe: DatePipe) {
-    this.isHomePage = window.location.pathname === '/';
+              private datePipe: DatePipe,
+              private pageService: PageService) {
+    this.pageService.isHome$.subscribe((location: boolean) => {
+      this.isHomePage = location;
+    });
   }
 
   ngOnInit() {

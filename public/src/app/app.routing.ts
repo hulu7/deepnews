@@ -7,6 +7,7 @@ import { FinanceComponent } from "./components/financeComponent/financeComponent
 import { HouseComponent } from "./components/houseComponent/houseComponent.component";
 import { CarComponent } from "./components/carComponent/carComponent.component";
 import { CultureComponent } from "./components/cultureComponent/cultureComponent.component";
+import { SearchComponent } from "./components/searchComponent/searchComponent.component";
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -15,6 +16,7 @@ const routes: Routes = [
   { path: 'house', component: HouseComponent },
   { path: 'car', component: CarComponent },
   { path: 'culture', component: CultureComponent },
+  { path: 'search', component: SearchComponent },
   { path: 'complain', component: ComplainComponent }
 ];
 

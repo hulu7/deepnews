@@ -17,9 +17,12 @@ import { FinanceComponent } from "./components/financeComponent/financeComponent
 import { HouseComponent } from "./components/houseComponent/houseComponent.component";
 import { CarComponent } from "./components/carComponent/carComponent.component";
 import { CultureComponent } from "./components/cultureComponent/cultureComponent.component";
+import { SearchComponent } from "./components/searchComponent/searchComponent.component";
 import { ApiService } from './servcies';
 import { ListContentService } from './servcies/listContentService';
 import { TimeService } from './servcies/timeService';
+import { PageService } from './servcies/pageService';
+import { SearchService } from './servcies/searchService';
 import { routing } from './app.routing';
 
 import { removeNgStyles, createNewHosts } from '@angularclass/hmr';
@@ -45,12 +48,15 @@ import { removeNgStyles, createNewHosts } from '@angularclass/hmr';
     FinanceComponent,
     HouseComponent,
     CarComponent,
-    CultureComponent
+    CultureComponent,
+    SearchComponent
   ],
   providers: [
     ApiService,
     ListContentService,
-    TimeService
+    TimeService,
+    PageService,
+    SearchService
   ],
   bootstrap: [AppComponent]
 })

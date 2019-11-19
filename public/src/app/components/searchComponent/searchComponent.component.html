@@ -1,0 +1,14 @@
+<div class="search-input-group">
+    <div class="search-page">
+        <form class="form-inline" target="_blank">
+            <div class="input-group">
+                <input value="{{searchKey}}" class="search-page-search-box" type="text" placeholder="请输入要搜索的内容" #input (keyup)="getSearchKey(input.value)">
+                <div class="input-group-button" (click)="startSearch()">
+                    <button class="input-group-button-text" type="submit" >
+                        <a class="search">搜索</a>
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

@@ -66,6 +66,7 @@ exports.getArticleListContinue = function(req,res) {
 	var page = Number(req.query.page) || 1,
 		limit = Number(req.query.limit) || 10,
 		catalog = req.query.catalog;
+	    limit = limit <= 10? limit: 10;
 
 	if (catalog === "全部") {
 		articleModel.paginate({subscribe:{$in:['admin']}}, {page: page, limit: limit, sort:{published:-1}}, function(err, result) {

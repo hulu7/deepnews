@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { pathNameCatalogsMap } from "../../const/common-variables";
 import { Router } from "@angular/router";
+import { PageService } from "../../servcies/pageService";
 
 @Component({
   selector: 'app-left-bar',
@@ -9,7 +10,8 @@ import { Router } from "@angular/router";
 })
 export class LeftbarComponent implements OnInit {
   public buttonStatus:any;
-  constructor(private router: Router) {
+  constructor(private router: Router,
+              private pageService: PageService) {
     this.updateButtonStatus('');
   }
 
@@ -18,26 +20,32 @@ export class LeftbarComponent implements OnInit {
   }
 
   public goHome(): void {
+    this.pageService.setIsHome(true);
     this.router.navigateByUrl('');
   }
 
   public selectTechnology(): void {
+    this.pageService.setIsHome(false);
     this.router.navigateByUrl('technology');
   }
 
   public selectFinance(): void {
+    this.pageService.setIsHome(false);
     this.router.navigateByUrl('finance');
   }
 
   public selectHouse(): void {
+    this.pageService.setIsHome(false);
     this.router.navigateByUrl('house');
   }
 
   public selectCar(): void {
+    this.pageService.setIsHome(false);
     this.router.navigateByUrl('car');
   }
 
   public selectCulture(): void {
+    this.pageService.setIsHome(false);
     this.router.navigateByUrl('culture');
   }
 

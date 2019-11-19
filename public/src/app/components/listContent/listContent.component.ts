@@ -27,7 +27,7 @@ export class ListContentComponent implements OnInit {
               private datePipe: DatePipe) {}
 
   ngOnInit() {
-      this.currentCatalog = catalogs[pathNameCatalogsMap[window.location.pathname]];
+      this.currentCatalog = catalogs[pathNameCatalogsMap[window.location.pathname]].label;
   }
 
   private pageByScroll$ = fromEvent(window, "scroll")
