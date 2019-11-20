@@ -154,4 +154,6 @@ exports.start = function(app){
 
 	app.get('/api/currentDate', login.currentDate);
 
+	app.get('/api/article/searchArticles', article.searchArticles);
+
 }

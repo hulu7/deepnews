@@ -1,9 +1,13 @@
+.font {
+  font-family: PingFang SC,Hiragino Sans GB,Microsoft YaHei,WenQuanYi Micro Hei,Helvetica Neue,Arial,sans-serif;
+}
+
 .search-input-group {
   width: 100%;
   min-width: 1180px;
   height: 100px;
-  position: relative;
-  top: -12px;
+  position: fixed;
+  top: 35px;
   z-index: 9999;
   background: #ffffff;
 }
@@ -99,5 +103,92 @@ input:focus::-moz-placeholder {
 /* Internet Explorer 10+ */
 input:focus:-ms-input-placeholder {
   color: transparent;
+}
+
+.search-content-body {
+  width: 900px;
+  position: relative;
+  margin-top: 100px;
+  margin-left: 50%;
+  left: -450px;
+}
+
+a {
+  text-decoration: none;
+}
+
+.search-content {
+  width: 100%;
+  height: 100%;
+}
+
+.article-box {
+  height: 80px;
+  position: relative;
+  border-bottom: 1px solid #e8e8e8;
+}
+
+.article-catalog {
+  @extend .font;
+  color: #ffffff;
+  background: #87A5B5;
+  position: relative;
+  font-size: 12px;
+  top: 25px;
+  right: 300px;
+  padding: 1px 2px;
+  cursor: pointer;
+}
+
+.article-title {
+  @extend .font;
+  padding: 10px 5px 5px 5px;
+  display: inline-block;
+  text-align: left;
+  margin-left: 40px;
+  font-weight: bold;
+  color: #222222;
+  width: 590px;
+  font-size: 18px;
+  line-height: 1.2;
+}
+
+.article-footer {
+  position: relative;
+  display: inline-block;
+  margin-left: 60px;
+  float: right;
+  margin-top: 10px;
+}
+
+.article-author {
+  @extend .font;
+  color: #777;
+  font-size: 14px;
+}
+
+.article-time {
+  @extend .article-author;
+}
+
+.article-loading {
+  @extend .article-author;
+  color: #222222;
+  position: relative;
+  font-size: 14px;
+  bottom: 10px;
+}
+
+.article-load-finished {
+  @extend .article-loading;
+}
+
+ul {
+  padding: 0;
+  position: relative;
+}
+
+ul li{
+  list-style-type:none;
 }
 

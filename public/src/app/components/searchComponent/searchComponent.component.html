@@ -12,3 +12,24 @@
         </form>
     </div>
 </div>
+
+<div class="search-content">
+    <div class="search-content-body"
+         infinite-scroll='loadData()'
+         infinite-scroll-disabled='isLoadingData'
+         infinite-scroll-distance='1'>
+        <ul >
+            <li *ngFor="let item of articles$|async">
+                <div class="article-box" >
+                    <a href="{{item.forceUrl}}" target="_blank" class="article-title">{{item.title}}</a>
+                    <div class="article-footer">
+                        <a class="article-author">{{item.author}} ⋅ </a>
+                        <a class="article-time">{{item.published}}</a>
+                    </div>
+                </div>
+            </li>
+        </ul>
+        <a *ngIf='isLoading' class="article-loading">加载中...</a>
+        <a *ngIf='!isLoading' class="article-load-finished">—— 加载完啦 ——</a>
+    </div>
+</div>

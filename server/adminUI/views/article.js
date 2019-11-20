@@ -89,6 +89,37 @@ exports.getArticleListContinue = function(req,res) {
 	}
 }
 
+exports.searchArticles = function(req,res){
+
+	var page = Number(req.query.page) || 1,
+		limit = 10,
+		key = req.query.key,
+		language = req.query.language || 'ch',
+		username = 'admin';
+
+	if(!key){
+
+		res.json({code:2,message:'搜索关键字不能为空'});
+
+		return;
+
+	}
+
+	var reg = new RegExp(key);
+
+	articleModel.paginate({language:language,title:{$in:[reg]},subscribe:{$in:[username]}},{page: page, limit: limit, sort:{published:-1}},function(err,result){
+		result.docs.forEach(doc => {
+			delete doc._doc.subscribe;
+			delete doc._doc.add;
+			delete doc._doc.trash;
+		});
+
+		err ? res.json({code:1,message:'搜索文章列表失败'}) : res.json({code:0,message:'搜索文章列表获取成功',result:result});
+
+
+	});
+}
+
 exports.getMarkedArticleList = function(req,res){
 
 	var page = Number(req.query.page) || 1,
@@ -234,7 +265,6 @@ exports.search = function(req,res){
 
 
 	});
-
 }
 
 // 过滤用户
