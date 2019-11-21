@@ -78,7 +78,7 @@ exports.getArticleListContinue = function(req,res) {
 			err ? res.json({code:1,message:'文章列表失败'}) : res.json({code:0,message:'文章列表获取成功',result:result});
 		});
 	} else {
-		articleModel.paginate({catalog:{$in:[catalog]}}, {page: page, limit: limit, sort:{published:-1}}, function(err, result) {
+		articleModel.paginate({subscribe:{$in:['public']}}, {catalog:{$in:[catalog]}}, {page: page, limit: limit, sort:{published:-1}}, function(err, result) {
 			result.docs.forEach(doc => {
 				delete doc._doc.subscribe;
 				delete doc._doc.add;
