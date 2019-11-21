@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+
 import { pathNameCatalogsMap } from "../../const/common-variables";
-import { Router } from "@angular/router";
-import { PageService } from "../../servcies/pageService";
+import { PageService } from '../../servcies/pageService';
 
 @Component({
   selector: 'app-left-bar',
@@ -10,8 +11,9 @@ import { PageService } from "../../servcies/pageService";
 })
 export class LeftbarComponent implements OnInit {
   public buttonStatus:any;
-  constructor(private router: Router,
-              private pageService: PageService) {
+  constructor(
+      private router: Router,
+      private pageService: PageService) {
     this.updateButtonStatus('');
   }
 

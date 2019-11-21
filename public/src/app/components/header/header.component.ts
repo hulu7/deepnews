@@ -32,6 +32,9 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    if (window.location.pathname !== '/') {
+      this.isHomePage = false;
+    }
     this.initDate();
   }
 

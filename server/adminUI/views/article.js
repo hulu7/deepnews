@@ -69,7 +69,7 @@ exports.getArticleListContinue = function(req,res) {
 	    limit = limit <= 10? limit: 10;
 
 	if (catalog === "全部") {
-		articleModel.paginate({subscribe:{$in:['admin']}}, {page: page, limit: limit, sort:{published:-1}}, function(err, result) {
+		articleModel.paginate({subscribe:{$in:['public']}}, {page: page, limit: limit, sort:{published:-1}}, function(err, result) {
 			result.docs.forEach(doc => {
 				delete doc._doc.subscribe;
 				delete doc._doc.add;
@@ -90,12 +90,11 @@ exports.getArticleListContinue = function(req,res) {
 }
 
 exports.searchArticles = function(req,res){
-
 	var page = Number(req.query.page) || 1,
 		limit = 10,
 		key = req.query.key,
 		language = req.query.language || 'ch',
-		username = 'admin';
+		username = 'public';
 
 	if(!key){
 

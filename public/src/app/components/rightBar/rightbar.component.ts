@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+
+import { isUndefined } from "util";
+
+import { PageService } from '../../servcies/pageService';
 import { SearchService } from "../../servcies/searchService";
-import {isUndefined} from "util";
+
 
 @Component({
   selector: 'app-right-bar',
@@ -9,7 +13,9 @@ import {isUndefined} from "util";
 })
 export class RightbarComponent implements OnInit {
   private searchKey: string;
-  constructor(private searchService: SearchService) {}
+  constructor(
+      private searchService: SearchService,
+      private pageService: PageService) {}
   ngOnInit() {}
 
   public getSearchKey(searchKey: string): void {
@@ -19,6 +25,7 @@ export class RightbarComponent implements OnInit {
 
   public openSearchPage(): void {
     if (!isUndefined(this.searchKey) && this.searchKey.length > 0) {
+      this.pageService.setIsHome(false);
       window.open('/search?keyword=' + this.searchKey);
     }
   }
