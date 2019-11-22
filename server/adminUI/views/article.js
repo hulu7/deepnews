@@ -95,7 +95,7 @@ exports.searchArticles = function(req,res){
 		limit = limit <= 10? limit: 10;
 		key = req.query.key,
 		language = req.query.language || 'ch',
-		username = 'public';
+		username = 'dn201900001';
 
 	if(!key){
 
