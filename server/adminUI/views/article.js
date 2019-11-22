@@ -69,7 +69,7 @@ exports.getArticleListContinue = function(req,res) {
 	    limit = limit <= 10? limit: 10;
 
 	if (catalog === "全部") {
-		articleModel.paginate({subscribe:{$in:['dn201949100']}}, {page: page, limit: limit, sort:{published:-1}}, function(err, result) {
+		articleModel.paginate({subscribe:{$in:['dn201900001']}}, {page: page, limit: limit, sort:{published:-1}}, function(err, result) {
 			result.docs.forEach(doc => {
 				delete doc._doc.subscribe;
 				delete doc._doc.add;
@@ -78,7 +78,7 @@ exports.getArticleListContinue = function(req,res) {
 			err ? res.json({code:1,message:'文章列表失败'}) : res.json({code:0,message:'文章列表获取成功',result:result});
 		});
 	} else {
-		articleModel.paginate({subscribe:{$in:['dn201949100']}}, {catalog:{$in:[catalog]}}, {page: page, limit: limit, sort:{published:-1}}, function(err, result) {
+		articleModel.paginate({catalog:{$in:[catalog]}, subscribe:{$in:['dn201900001']}}, {page: page, limit: limit, sort:{published:-1}}, function(err, result) {
 			result.docs.forEach(doc => {
 				delete doc._doc.subscribe;
 				delete doc._doc.add;
@@ -91,7 +91,8 @@ exports.getArticleListContinue = function(req,res) {
 
 exports.searchArticles = function(req,res){
 	var page = Number(req.query.page) || 1,
-		limit = 10,
+		limit = Number(req.query.limit) || 10,
+		limit = limit <= 10? limit: 10;
 		key = req.query.key,
 		language = req.query.language || 'ch',
 		username = 'public';
