@@ -1,0 +1,73 @@
+.font {
+  font-family: PingFang SC,Hiragino Sans GB,Microsoft YaHei,WenQuanYi Micro Hei,Helvetica Neue,Arial,sans-serif;
+}
+
+.catalog-button {
+  width: 2.7rem;
+  height: 100%;
+  background: transparent;
+  text-align: center;
+  padding: 0;
+  margin: 2px;
+  position: absolute;
+  border: none;
+}
+
+.search-button {
+  width: 2.7rem;
+  height: 100%;
+  background: transparent;
+  text-align: center;
+  padding: 0;
+  margin: 2px;
+  position: relative;
+  float: right;
+  border: none;
+}
+
+.icon-bar {
+  width: 1.2rem;
+  height: 1px;
+  background: #ffffff;
+  margin: 0 auto .35rem;
+}
+
+.webapp-toolbar {
+  background: #f66d29 !important;
+}
+
+.webapp-toolbar-title {
+  @extend .font;
+  font-size: 22px;
+  color: #ffffff;
+  text-align: center;
+}
+
+.webapp-toolbar-catalog {
+  @extend .font;
+  font-size: 18px;
+  z-index: 1000;
+  background-color: #27282d;
+  text-align: center;
+  height: 35px;
+  position: fixed;
+  margin-top: 45px;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+header {
+  z-index: 1000;
+  background-color: #27282d;
+  height: 35px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+::ng-deep nav {
+  height: 46px;
+}
+

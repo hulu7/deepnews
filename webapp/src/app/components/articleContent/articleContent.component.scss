@@ -1,0 +1,101 @@
+.font {
+  font-family: PingFang SC,Hiragino Sans GB,Microsoft YaHei,WenQuanYi Micro Hei,Helvetica Neue,Arial,sans-serif;
+}
+
+.card {
+  padding: 10px 10px;
+}
+
+.card-url {
+  height: 100%;
+  width: 100%;
+}
+
+.author {
+  display: inline-block;
+  height: 20px;
+  font-size: 12px;
+  font-weight: 500;
+  color: rgba(0, 0, 0, 0.6);
+  line-height: 20px;
+  padding: 0 5px;
+  border-radius: 10px;
+  background-color: #e4e4e4;
+  opacity: 0.7;
+}
+
+.author-name {
+  @extend .font;
+  font-size: 10px;
+  color: #27282d;
+}
+
+.info-content {
+  @extend .font;
+}
+
+.card-title {
+  @extend .font;
+  color: #222222;
+  font-size: 16px !important;
+}
+
+.load-more {
+  height: 70px;
+  width: 100%;
+  text-align: center;
+}
+
+.is-loading {
+  height: 70px;
+  width: 100%;
+  text-align: center;
+  img {
+    height: 30px;
+  }
+}
+
+.load-more-button {
+  margin: 00px auto 20px;
+  padding: 14px 20px;
+  color: #999;
+  background-color: #fff;
+  border-radius: 32px;
+  border: 2px solid #efefef;
+  -webkit-transition: .3s;
+  -o-transition: .3s;
+  transition: .3s;
+}
+
+.article-footer {
+  position: relative;
+  display: inline-block;
+  margin-left: 10px;
+  margin-top: 5px;
+}
+
+.article-time {
+  @extend .font;
+  font-size: 10px;
+  color: #777;
+}
+
+.article-catalog {
+  @extend .font;
+  color: #ffffff;
+  background: #bfbfbf;
+  position: relative;
+  font-size: 12px;
+  top: -14px;
+  padding: 1px 2px;
+  cursor: pointer;
+  box-shadow: 2px 0px 2px rgba(134, 134, 134, 0.9);;
+}
+
+.article-loader {
+  text-align: center;
+}
+
+.article-content {
+  margin-top: -5px;
+}

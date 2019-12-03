@@ -1,0 +1,29 @@
+<div class="container">
+  <div class="row">
+    <div class="articles" *ngFor="let article of articles">
+      <div class="card">
+        <a class="card-url" target="_blank" href="{{article.forceUrl}}">
+          <a class="article-catalog">{{article?.catalog[0]}}</a>
+          <div class="article-content">
+            <a class="card-title">{{article?.title}}</a>
+          </div>
+          <div class="info-content">
+            <div class="author">
+              <span class="author-name">{{article?.author}}</span>
+            </div>
+            <div class="article-footer">
+              <a class="article-time">{{article?.published}}</a>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="load-more" *ngIf="!isLoading">
+  <button class="load-more-button" (click)="loadMoreArticles()">查看更多最新资讯</button>
+</div>
+
+<div class="is-loading" *ngIf="isLoading">
+  <img src="../../../assets/loading.gif">
+</div>

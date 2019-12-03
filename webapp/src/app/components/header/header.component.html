@@ -1,0 +1,49 @@
+<div class="navbar-fixed">
+  <nav class="webapp-toolbar">
+    <button class="catalog-button" (click)="showCatalog()">
+      <div class="icon-bar"></div>
+      <div class="icon-bar"></div>
+      <div class="icon-bar"></div>
+    </button>
+<!--    <button class="search-button">-->
+<!--      <img class="search-button-icon" src="../../../assets/search.svg">-->
+<!--    </button>-->
+    <div class="webapp-toolbar-title">
+      <a class="text">深度资讯</a>
+    </div>
+  </nav>
+</div>
+<div *ngIf="isCatalogShow" class="webapp-toolbar-catalog">
+  <ul  class="tabs grey lighten-2">
+    <li class="tab col s3" (click)="goHomePage()">
+      <a  class="waves-effect waves-dark">
+        <span class="black-text">全部</span>
+      </a>
+    </li>
+    <li class="tab col s3" (click)="selectTechnology()">
+      <a  class="waves-effect waves-dark">
+        <span class="black-text">科技</span>
+      </a>
+    </li>
+    <li class="tab col s3 " (click)="selectFinance()">
+      <a   class="waves-effect waves-dark">
+        <span class="black-text">财经</span>
+      </a>
+    </li>
+    <li class="tab col s3" (click)="selectHouse()">
+      <a  class="waves-effect waves-dark">
+        <span class="black-text">房产</span>
+      </a>
+    </li>
+    <li class="tab col s3 " (click)="selectCar()">
+      <a class="waves-effect waves-dark">
+        <span class="black-text">汽车</span>
+      </a>
+    </li>
+    <li class="tab col s3" (click)="selectCulture()">
+      <a  class="waves-effect waves-dark">
+        <span class="black-text">文化</span>
+      </a>
+    </li>
+  </ul>
+</div>

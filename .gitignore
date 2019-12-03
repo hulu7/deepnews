@@ -4,9 +4,11 @@
 # Node Files #
 /admin/node_modules/*
 /public/node_modules/*
+/webapp/node_modules/*
 
 # Build Files #
 /public/dist/*
+/webapp/dist/*
 
 # package-lock #
 package-lock.json
