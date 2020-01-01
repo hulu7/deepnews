@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import { DatePipe } from '@angular/common';
+import { fromEvent } from "rxjs";
 
 @Component({
   selector: 'finance-content',
@@ -10,5 +11,9 @@ import { DatePipe } from '@angular/common';
 
 export class FinanceComponent implements OnInit {
   constructor() {}
-  ngOnInit() {}
+  ngOnInit() {
+    fromEvent(window, 'reload').subscribe((event) => {
+      console.log('refresh');
+    })
+  }
 }

@@ -46,6 +46,8 @@ button,a {
   position: relative;
   display: -ms-flexbox;
   display: flex;
+  flex-direction: row;
+  flex-flow: row;
   -ms-flex-wrap: wrap;
   flex-wrap: wrap;
   -ms-flex-align: stretch;

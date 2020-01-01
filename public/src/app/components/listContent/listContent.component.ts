@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import { DatePipe } from '@angular/common';
-import {BehaviorSubject} from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 import { fromEvent } from 'rxjs/observable/fromEvent';
 import { merge } from 'rxjs/observable/merge';
-import {distinct, filter, map, debounceTime, tap, flatMap } from 'rxjs/operators';
+import { distinct, filter, map, debounceTime, tap, flatMap } from 'rxjs/operators';
 import * as _ from 'lodash';
 import { ListContentService } from '../../servcies/listContentService';
 import { pathNameCatalogsMap, catalogs } from "../../const/common-variables";
@@ -18,9 +18,9 @@ import { pathNameCatalogsMap, catalogs } from "../../const/common-variables";
 export class ListContentComponent implements OnInit {
   public currentCatalog: string;
   private cache: Array<any> = [];
-  private itemHeight: number = 114;
-  private numberOfItems: number = 10;
-  private isLoading: boolean = false;
+  private itemHeight = 114;
+  private numberOfItems = 10;
+  public isLoading = false;
   private pageByManual$ = new BehaviorSubject(1);
 
   constructor(private listContentService: ListContentService,
