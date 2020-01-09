@@ -9,11 +9,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   private timer: any;
   constructor() {}
 
-  ngOnInit() {
-    // this.timer = setInterval(() => {
-    //     console.log('1');
-    //   }, 2000);
-  }
+  ngOnInit() {}
 
   ngOnDestroy(): void {
     if (this.timer) {

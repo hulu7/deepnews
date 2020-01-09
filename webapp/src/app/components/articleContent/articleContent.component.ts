@@ -1,5 +1,6 @@
 import { Component, OnInit, OnDestroy, ElementRef, QueryList, ViewChildren } from '@angular/core';
 import { DatePipe } from '@angular/common';
+import { Router } from '@angular/router';
 
 import { Observable, Subject } from 'rxjs';
 import { map, takeUntil } from 'rxjs/operators';
@@ -29,7 +30,8 @@ export class ArticleContentComponent implements OnInit, OnDestroy {
   private numberOfItems = 10;
   private page = 1;
 
-  constructor(private datePipe: DatePipe,
+  constructor(private router: Router,
+              private datePipe: DatePipe,
               private listContentService: ListContentService,
               private pageService: PageService) {
   }
@@ -43,10 +45,12 @@ export class ArticleContentComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    // this.loadArticles(this.page).subscribe();
     this.pageService.getCurrentPath$
       .pipe(takeUntil(this.destroy$))
       .subscribe((path) => {
+          if(window.location.pathname.replace('/', '') !== path) {
+            this.router.navigateByUrl('')
+          }
           this.cache = [];
           this.articles = [];
           this.page = 1;
