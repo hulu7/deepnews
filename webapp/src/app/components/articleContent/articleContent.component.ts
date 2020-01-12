@@ -97,6 +97,29 @@ export class ArticleContentComponent implements OnInit, OnDestroy {
       let published = this.datePipe.transform(article.published,'yyyy-MM-dd');
       let yyMmDdArray = published.split('-');
       article.published= today === published? '今天': yyMmDdArray[0] + '年' + yyMmDdArray[1] + '月' + yyMmDdArray[2] + '日';
+      let images = [];
+      if (article.articleCover !== 'images/image.jpg') {
+        images = article.articleCover.split(",");
+        images.forEach(image => {
+          if (image === "") {
+            images.splice(images.indexOf(image), 1);
+          }
+        });
+      }
+      article.articleCover = [];
+      if (images.length >= 3) {
+        article.isShowSingleImage = false;
+        article.hasImage = true;
+        for (let i = 0; i < 3; i++) {
+          article.articleCover.push(images[i]);
+        }
+      } else if (images.length > 0 && images.length < 3){
+        article.isShowSingleImage = true;
+        article.hasImage = true;
+        article.articleCover.push(images[0]);
+      } else {
+        article.hasImage = false;
+      }
     });
   }
 

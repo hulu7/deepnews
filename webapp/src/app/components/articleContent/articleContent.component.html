@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="articles" *ngFor="let article of articles">
-      <div class="card">
+      <div class="card" *ngIf="!article.hasImage">
         <a class="card-url" target="_blank" href="{{article.forceUrl}}">
           <a class="article-catalog">{{article?.catalog[0]}}</a>
           <div class="article-content">
@@ -13,6 +13,56 @@
             </div>
             <div class="article-footer">
               <a class="article-time">{{article?.published}}</a>
+            </div>
+          </div>
+        </a>
+      </div>
+      <div class="card" *ngIf="article.hasImage && article.isShowSingleImage">
+        <a class="card-url" target="_blank" href="{{article.forceUrl}}">
+          <a class="article-catalog">{{article?.catalog[0]}}</a>
+          <div class="article-body">
+            <div class="article-image">
+              <img class="article-image-single" src="{{article.articleCover[0]}}">
+            </div>
+            <div class="article-text">
+              <div class="article-content">
+                <a class="card-title">{{article?.title}}</a>
+              </div>
+              <div class="info-content">
+                <div class="author">
+                  <span class="author-name">{{article?.author}}</span>
+                </div>
+                <div class="article-footer">
+                  <a class="article-time">{{article?.published}}</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
+      <div class="card" *ngIf="article.hasImage && !article.isShowSingleImage">
+        <a class="card-url" target="_blank" href="{{article.forceUrl}}">
+          <a class="article-catalog">{{article?.catalog[0]}}</a>
+          <div class="article-content">
+            <a class="card-title">{{article?.title}}</a>
+          </div>
+          <div class="info-content">
+            <div class="author">
+              <span class="author-name">{{article?.author}}</span>
+            </div>
+            <div class="article-footer">
+              <a class="article-time">{{article?.published}}</a>
+            </div>
+          </div>
+          <div class="article-images-three">
+            <div class="article-images-three-inner">
+              <img class="article-image-single" src="{{article.articleCover[0]}}">
+            </div>
+            <div class="article-images-three-inner">
+              <img class="article-image-single" src="{{article.articleCover[1]}}">
+            </div>
+            <div class="article-images-three-inner">
+              <img class="article-image-single" src="{{article.articleCover[2]}}">
             </div>
           </div>
         </a>
