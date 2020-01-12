@@ -23,9 +23,22 @@ a {
   position: relative;
   font-size: 12px;
   top: 25px;
-  right: 300px;
+  right: 308px;
   padding: 1px 2px;
   cursor: pointer;
+}
+
+.article-catalog-sub {
+  @extend .font;
+  color: #ffffff;
+  background: #87A5B5;
+  position: relative;
+  font-size: 12px;
+  top: 14px;
+  right: 308px;
+  padding: 1px 2px;
+  cursor: pointer;
+  z-index: 9999;
 }
 
 .article-title {
@@ -41,10 +54,31 @@ a {
   line-height: 1.2;
 }
 
+.article-title-sub {
+  @extend .font;
+  padding: 5px 5px 5px 5px;
+  display: inline-block;
+  text-align: left;
+  margin-left: 80px;
+  font-weight: bold;
+  color: #222222;
+  width: 590px;
+  font-size: 18px;
+  line-height: 1.2;
+}
+
 .article-footer {
   position: relative;
   display: inline-block;
   margin-left: 60px;
+  float: left;
+  margin-top: 5px;
+}
+
+.article-footer-sub {
+  position: relative;
+  display: inline-block;
+  margin-left: 85px;
   float: left;
   margin-top: 5px;
 }
@@ -57,6 +91,21 @@ a {
 
 .article-time {
   @extend .article-author;
+}
+
+.article-image {
+  width: 80px;
+  height: 80px;
+  overflow: hidden;
+  position: absolute;
+  top: 16px;
+  left: -3px;
+}
+
+.article-image-inner {
+  width: 100%;
+  height: 100%;
+  padding-right: 5px;
 }
 
 .article-loading {

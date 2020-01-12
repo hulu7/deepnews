@@ -86,6 +86,22 @@ export class ListContentComponent implements OnInit {
       let published = this.datePipe.transform(article.published,'yyyy-MM-dd');
       let yyMmDdArray = published.split('-');
       article.published= today === published? '今天': yyMmDdArray[0] + '年' + yyMmDdArray[1] + '月' + yyMmDdArray[2] + '日';
+        let images = [];
+        if (article.articleCover !== 'images/image.jpg') {
+            images = article.articleCover.split(",");
+            images.forEach(image => {
+                if (image === "") {
+                    images.splice(images.indexOf(image), 1);
+                }
+            });
+        }
+        article.articleCover = [];
+        if (images.length > 0) {
+            article.isShowImage = true;
+            article.articleCover.push(images[0]);
+        }  else {
+            article.isShowImage = false;
+        }
     });
   }
 }

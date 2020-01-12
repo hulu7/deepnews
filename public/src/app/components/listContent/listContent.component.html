@@ -4,10 +4,21 @@
      infinite-scroll-distance='1'>
     <ul >
         <li *ngFor="let item of articles$|async">
-            <div class="article-box" >
+            <div class="article-box" *ngIf="!item.isShowImage">
                 <a class="article-catalog" (click)="catalogSwitch()">{{item.catalog[0]}}</a>
                 <a href="{{item.forceUrl}}" target="_blank" class="article-title">{{item.title}}</a>
                 <div class="article-footer">
+                    <a class="article-author">{{item.author}} ⋅ </a>
+                    <a class="article-time">{{item.published}}</a>
+                </div>
+            </div>
+            <div class="article-box" *ngIf="item.isShowImage">
+                <a class="article-catalog-sub" (click)="catalogSwitch()">{{item.catalog[0]}}</a>
+                <a class="article-image" href="{{item.forceUrl}}" target="_blank">
+                    <img class="article-image-inner" src="{{item.articleCover[0]}}">
+                </a>
+                <a href="{{item.forceUrl}}" target="_blank" class="article-title-sub">{{item.title}}</a>
+                <div class="article-footer-sub">
                     <a class="article-author">{{item.author}} ⋅ </a>
                     <a class="article-time">{{item.published}}</a>
                 </div>
