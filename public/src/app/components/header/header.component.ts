@@ -62,4 +62,9 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.isHomePage = true;
     this.router.navigateByUrl('');
   }
+
+  public openSearchBox(): void {
+    this.pageService.setIsHome(false);
+    window.open('/search?keyword=');
+  }
 }

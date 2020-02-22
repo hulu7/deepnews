@@ -16,15 +16,14 @@ import * as _ from "lodash";
 })
 
 export class SearchComponent implements OnInit, OnDestroy {
-
   private destroy$: Subject<boolean> = new Subject();
   private cache: Array<any> = [];
   private itemHeight: number = 80;
   private numberOfItems: number = 10;
-  private isLoading: boolean = false;
   private pageByManual$ = new BehaviorSubject(1);
 
   public searchKey: string;
+  public isLoading = false;
   constructor(private router: Router,
               private searchService: SearchService,
               private activatedRoute: ActivatedRoute,
@@ -47,10 +46,11 @@ export class SearchComponent implements OnInit, OnDestroy {
   }
 
   public startSearch(): void {
-    this.router.navigateByUrl('/search?keyword=' + this.searchKey).then(() => {
-      window.location.reload();
-    });
-
+      if (this.searchKey !== "") {
+          this.router.navigateByUrl('/search?keyword=' + this.searchKey).then(() => {
+              window.location.reload();
+          });
+      }
   }
 
   private pageByScroll$ = fromEvent(window, "scroll")

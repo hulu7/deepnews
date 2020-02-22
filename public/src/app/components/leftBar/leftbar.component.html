@@ -1,5 +1,5 @@
 <div class="left-bar-content">
-    <img class="logo" src="/img/logo.png" (click)="goHome()">
+    <img class="logo" src="/img/favicon.png" (click)="goHome()">
     <a [ngClass]="{'left-bar-button-technology-selected': buttonStatus.technology, 'left-bar-button-technology': !buttonStatus.technology}" target="_blank" (click)="selectTechnology()">科技</a>
     <a [ngClass]="{'left-bar-button-finance-selected': buttonStatus.finance, 'left-bar-button-finance': !buttonStatus.finance}" target="_blank" (click)="selectFinance()">财经</a>
     <a [ngClass]="{'left-bar-button-house-selected': buttonStatus.house, 'left-bar-button-house': !buttonStatus.house}" target="_blank" (click)="selectHouse()">房产</a>

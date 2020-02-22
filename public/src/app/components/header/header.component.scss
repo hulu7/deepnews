@@ -4,7 +4,7 @@
 
 header {
   z-index: 1000;
-  background-color: #27282d;
+  background-color: #eff0f1;
   height: 35px;
   position: fixed;
   top: 0;
@@ -25,6 +25,11 @@ header {
   margin-top: 8px;
   margin-right: 10px;
   cursor: pointer;
+  color: #222222;
+}
+
+.search-button {
+  @extend .complain-button;
 }
 
 .home-button {
@@ -34,10 +39,12 @@ header {
   margin-top: 8px;
   margin-left: 10px;
   cursor: pointer;
+  color: #222222;
 }
 
 .date-pad {
   @extend .font;
+  color: #44433343;
   position: relative;
   vertical-align: middle;
   float: left;

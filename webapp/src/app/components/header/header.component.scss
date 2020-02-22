@@ -28,19 +28,22 @@
 .icon-bar {
   width: 1.2rem;
   height: 1px;
-  background: #ffffff;
+  background: #f66d29;
   margin: 0 auto .35rem;
 }
 
 .webapp-toolbar {
-  background: #f66d29 !important;
+  background: #ffffff !important;
 }
 
 .webapp-toolbar-title {
   @extend .font;
-  font-size: 22px;
-  color: #ffffff;
+  font-size: 20px;
   text-align: center;
+  .webapp-logo {
+    height: 32px;
+    margin-top: 6px;
+  }
 }
 
 .webapp-toolbar-catalog {

@@ -1,11 +1,10 @@
 .left-bar-content {
-  width: 1180px;
+  width: 110px;
   margin: 0 auto;
   min-height: 1500px;
 }
 
 .logo {
-  float: left;
   height: 50px;
   cursor: pointer;
 }
@@ -25,7 +24,7 @@
   cursor: pointer;
   color: #444;
   position: relative;
-  margin-left: -110px;
+  margin-left: 0px;
 }
 
 .left-bar-button-base:hover {
@@ -34,7 +33,6 @@
 
 .left-bar-button-technology {
   @extend .left-bar-button-base;
-  margin-top: 66px;
 }
 
 .left-bar-button-technology-selected {
@@ -44,7 +42,6 @@
 
 .left-bar-button-finance {
   @extend .left-bar-button-base;
-  margin-top: 106px;
 }
 
 .left-bar-button-finance-selected {
@@ -54,7 +51,6 @@
 
 .left-bar-button-house {
   @extend .left-bar-button-base;
-  margin-top: 146px;
 }
 
 .left-bar-button-house-selected {
@@ -64,7 +60,6 @@
 
 .left-bar-button-car {
   @extend .left-bar-button-base;
-  margin-top: 186px;
 }
 
 .left-bar-button-car-selected {
@@ -74,7 +69,6 @@
 
 .left-bar-button-culture {
   @extend .left-bar-button-base;
-  margin-top: 226px;
 }
 
 .left-bar-button-culture-selected  {

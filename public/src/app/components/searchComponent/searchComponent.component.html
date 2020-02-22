@@ -29,7 +29,7 @@
                 </div>
             </li>
         </ul>
-        <a *ngIf='isLoading' class="article-loading">加载中...</a>
-        <a *ngIf='!isLoading' class="article-load-finished">—— 加载完啦 ——</a>
+        <a *ngIf="isLoading && searchKey !== ''" class="article-loading">加载中...</a>
+        <a *ngIf="!isLoading" class="article-load-finished">—— 加载完啦 ——</a>
     </div>
 </div>
