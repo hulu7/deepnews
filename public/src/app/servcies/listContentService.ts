@@ -7,7 +7,7 @@ export class ListContentService {
     constructor(private http: Http) {}
 
     public getArticles(page: any, pageLimit: any, catalog: string): Observable<any> {
-        // return this.http.get(`http://localhost:3000/api/article/getArticle?page=${page}&limit=${pageLimit}&catalog=${catalog}`);
-        return this.http.get(`http://www.deepinews.com:10003/api/article/getArticle?page=${page}&limit=${pageLimit}&catalog=${catalog}`);
+        // return this.http.get(`http://192.168.163.16:80/api/article/getArticle?page=${page}&limit=${pageLimit}&catalog=${catalog}`);
+        return this.http.get(`https://www.deepinews.com/api/article/getArticle?page=${page}&limit=${pageLimit}&catalog=${catalog}`);
     }
 }

@@ -7,6 +7,7 @@ import { distinct, filter, map, debounceTime, tap, flatMap } from 'rxjs/operator
 import * as _ from 'lodash';
 import { ListContentService } from '../../servcies/listContentService';
 import { pathNameCatalogsMap, catalogs } from "../../const/common-variables";
+import { isNullOrUndefined } from "util";
 
 @Component({
   selector: 'list-content',
@@ -87,7 +88,7 @@ export class ListContentComponent implements OnInit {
       let yyMmDdArray = published.split('-');
       article.published= today === published? '今天': yyMmDdArray[0] + '年' + yyMmDdArray[1] + '月' + yyMmDdArray[2] + '日';
         let images = [];
-        if (article.articleCover !== 'images/image.jpg') {
+        if (article.articleCover !== 'images/image.jpg' && !isNullOrUndefined(article.articleCover)) {
             images = article.articleCover.split(",");
             images.forEach(image => {
                 if (image === "") {

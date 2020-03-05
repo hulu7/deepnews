@@ -150,10 +150,10 @@ exports.start = function(app){
 	app.get('/language/deleteLangById',[jwtauth],language.deleteLangById);
 
 	//Public APIs
-	app.get('/api/article/getArticle', article.getArticleListContinue);
+	app.get('/article/getArticle', article.getArticleListContinue);
 
-	app.get('/api/currentDate', login.currentDate);
+	app.get('/currentDate', login.currentDate);
 
-	app.get('/api/article/searchArticles', article.searchArticles);
+	app.get('/article/searchArticles', article.searchArticles);
 
 }
