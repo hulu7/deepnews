@@ -161,8 +161,9 @@ exports.viewedArticle = function(req, res) {
 			articleModel.find({language:'ch', _id:{$in:[id]},subscribe:{$in:[username]}},function(err,result){
 				if (result.length > 0) {
 					var date = new Date();
+					var month = date.getMonth() + 1;
 					var updateTime = date.getFullYear() + "-" +
-						date.getMonth() + "-" +
+						month + "-" +
 						date.getDate() + " " +
 						date.getHours() + ":" +
 						date.getMinutes() + ":" +
