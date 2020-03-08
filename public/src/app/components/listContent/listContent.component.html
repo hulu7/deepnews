@@ -6,7 +6,7 @@
         <li *ngFor="let item of articles$|async">
             <div class="article-box" *ngIf="!item.isShowImage">
                 <a class="article-catalog" (click)="catalogSwitch()">{{item.catalog[0]}}</a>
-                <a href="{{item.forceUrl}}" target="_blank" class="article-title">{{item.title}}</a>
+                <a href="{{item.forceUrl}}" target="_blank" class="article-title" (click)="viewed(item)">{{item.title}}</a>
                 <div class="article-footer">
                     <a class="article-author">{{item.author}} ⋅ </a>
                     <a class="article-time">{{item.published}}</a>
@@ -14,7 +14,7 @@
             </div>
             <div class="article-box" *ngIf="item.isShowImage">
                 <a class="article-catalog-sub" (click)="catalogSwitch()">{{item.catalog[0]}}</a>
-                <a class="article-image" href="{{item.forceUrl}}" target="_blank">
+                <a class="article-image" href="{{item.forceUrl}}" target="_blank" (click)="viewed(item)">
                     <img class="article-image-inner" src="{{item.articleCover[0]}}">
                 </a>
                 <a href="{{item.forceUrl}}" target="_blank" class="article-title-sub" (click)="viewed(item)">{{item.title}}</a>
