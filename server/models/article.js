@@ -19,6 +19,7 @@ var articleSchema = new Schema({
 	recommend       : Array,
 	isActive        : Boolean,
 	clickVolume     : String,
+	clickUpdate     : [],
 	columnName		: String,
 	author 			: String,
 	forceUrl        : String,

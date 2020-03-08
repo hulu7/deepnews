@@ -93,6 +93,7 @@ export default function Controller($scope,$state,$stateParams,ContentSer,CommonJ
 		'columnName' : cname,
 		'author' : '',
 		'clickVolume' : '',
+		'clickUpdate' : [],
 		'forceUrl' : '',
 		'articleCover' : 'images/image.jpg',
 		'published' : new Date(),

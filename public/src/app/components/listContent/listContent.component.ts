@@ -1,13 +1,17 @@
 import {Component, OnInit} from '@angular/core';
 import { DatePipe } from '@angular/common';
-import { BehaviorSubject } from 'rxjs';
-import { fromEvent } from 'rxjs/observable/fromEvent';
-import { merge } from 'rxjs/observable/merge';
+
+import { BehaviorSubject, Subject } from 'rxjs';
 import { distinct, filter, map, debounceTime, tap, flatMap } from 'rxjs/operators';
+import { fromEvent } from 'rxjs/observable/fromEvent';
+import { isNullOrUndefined } from "util";
+import { merge } from 'rxjs/observable/merge';
+import { takeUntil } from "rxjs/operators";
 import * as _ from 'lodash';
+
 import { ListContentService } from '../../servcies/listContentService';
 import { pathNameCatalogsMap } from "../../const/common-variables";
-import { isNullOrUndefined } from "util";
+
 
 @Component({
   selector: 'list-content',
@@ -17,18 +21,27 @@ import { isNullOrUndefined } from "util";
 })
 
 export class ListContentComponent implements OnInit {
+
   public currentCatalog: string;
   private cache: Array<any> = [];
+  private destroy$: Subject<boolean> = new Subject();
   private itemHeight = 114;
-  private numberOfItems = 10;
   public isLoading = false;
+  private numberOfItems = 10;
   private pageByManual$ = new BehaviorSubject(1);
+
 
   constructor(private listContentService: ListContentService,
               private datePipe: DatePipe) {}
 
   ngOnInit() {
       this.currentCatalog = pathNameCatalogsMap[window.location.pathname];
+  }
+
+  public viewed(article: any): void {
+      this.listContentService.putViewedArticle({id: article._id})
+          .pipe(takeUntil(this.destroy$))
+          .subscribe()
   }
 
   private pageByScroll$ = fromEvent(window, "scroll")

@@ -167,6 +167,7 @@ export default function Controller($scope,$state,$stateParams,AddSer,CommonJs,Fi
 		'columnName' : '',
 		'author' : '',
 		'clickVolume' : '',
+		'clickUpdate' : [],
 		'forceUrl' : '',
 		'articleCover' : 'images/image.jpg',
 		'published' : new Date(),

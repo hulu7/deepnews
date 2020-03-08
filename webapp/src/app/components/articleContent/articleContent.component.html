@@ -2,7 +2,7 @@
   <div class="row">
     <div class="articles" *ngFor="let article of articles">
       <div class="card" *ngIf="!article.hasImage">
-        <a class="card-url" target="_blank" href="{{article.forceUrl}}">
+        <a class="card-url" target="_blank" href="{{article.forceUrl}}" (click)="viewed(article)">
           <a class="article-catalog">{{article?.catalog[0]}}</a>
           <div class="article-content">
             <a class="card-title">{{article?.title}}</a>
@@ -18,7 +18,7 @@
         </a>
       </div>
       <div class="card" *ngIf="article.hasImage && article.isShowSingleImage">
-        <a class="card-url" target="_blank" href="{{article.forceUrl}}">
+        <a class="card-url" target="_blank" href="{{article.forceUrl}}" (click)="viewed(article)">
           <a class="article-catalog">{{article?.catalog[0]}}</a>
           <div class="article-body">
             <div class="article-image">
@@ -41,7 +41,7 @@
         </a>
       </div>
       <div class="card" *ngIf="article.hasImage && !article.isShowSingleImage">
-        <a class="card-url" target="_blank" href="{{article.forceUrl}}">
+        <a class="card-url" target="_blank" href="{{article.forceUrl}}" (click)="viewed(article)">
           <a class="article-catalog">{{article?.catalog[0]}}</a>
           <div class="article-content">
             <a class="card-title">{{article?.title}}</a>

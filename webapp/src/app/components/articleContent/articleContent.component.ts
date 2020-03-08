@@ -127,4 +127,10 @@ export class ArticleContentComponent implements OnInit, OnDestroy {
   public loadMoreArticles(): void {
     this.loadArticles(this.page).subscribe();
   }
+
+  public viewed(article: any): void {
+    this.listContentService.putViewedArticle({id: article._id})
+      .pipe(takeUntil(this.destroy$))
+      .subscribe()
+  }
 }

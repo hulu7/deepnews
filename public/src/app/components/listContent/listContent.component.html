@@ -17,7 +17,7 @@
                 <a class="article-image" href="{{item.forceUrl}}" target="_blank">
                     <img class="article-image-inner" src="{{item.articleCover[0]}}">
                 </a>
-                <a href="{{item.forceUrl}}" target="_blank" class="article-title-sub">{{item.title}}</a>
+                <a href="{{item.forceUrl}}" target="_blank" class="article-title-sub" (click)="viewed(item)">{{item.title}}</a>
                 <div class="article-footer-sub">
                     <a class="article-author">{{item.author}} ⋅ </a>
                     <a class="article-time">{{item.published}}</a>

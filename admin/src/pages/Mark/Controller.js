@@ -154,6 +154,7 @@ export default function Controller($scope,$state,$stateParams,MarkSer,CommonJs,F
 		'columnName' : '',
 		'author' : '',
 		'clickVolume' : '',
+		'clickUpdate' : [],
 		'forceUrl' : '',
 		'articleCover' : 'images/image.jpg',
 		'published' : new Date(),
