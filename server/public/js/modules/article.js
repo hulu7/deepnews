@@ -16,7 +16,8 @@ define(function(require,exports,module){
 		articleID = getUrlParam(location.href).id,
 		parentID = '-1',
 		str = '',
-		SERVER_PATH = 'http://localhost:3000';
+		// SERVER_PATH = 'http://localhost:3000';
+		SERVER_PATH = 'https://www.deepinews.com/';
 
 	// 获取评论列表
 	getCommentLists(articleID);

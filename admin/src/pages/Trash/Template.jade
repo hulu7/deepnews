@@ -18,6 +18,8 @@ table.article-list
         th(ng-if='user.isAdmin') 是否推荐
         th(ng-if='user.isAdmin') 是否激活
         th 更新时间
+        th(ng-if='user.isAdmin') 点击记录
+        th(ng-if='user.isAdmin') 点击次数
         th 操作
     tr(ng-repeat='item in articleList.docs')
         td
@@ -33,6 +35,9 @@ table.article-list
             span(ng-if='item.recommend.length==0') 否
         td(ng-if='user.isAdmin', ng-bind="item.isActive ? '是' : '否' ")
         td(ng-bind="item.published | date:'yyyy-MM-dd' ")
+        td(ng-if='user.isAdmin')
+            select(ng-init='clickRecord = item.clickUpdate[0]', ng-model='clickRecord', ng-options='time for time in item.clickUpdate', size=2, style="width:120px;")
+        td(ng-if='user.isAdmin', ng-bind="item.clickUpdate.length")
         td
             a(ng-if= "item.trash.includes(user.username)", href='javascript:;', ng-click='recoveryArticle(item._id, item.columnID)') [恢复]
 
