@@ -3,8 +3,8 @@ export const catalogs = {
         name: "",
         label: "全部"
     },
-    technology: {
-        name: "technology",
+    tech: {
+        name: "tech",
         label: "科技"
     },
     finance: {
@@ -27,7 +27,7 @@ export const catalogs = {
 
 export const pathNameCatalogsMap = {
     "/": "all",
-    "/technology": catalogs.technology.name,
+    "/tech": catalogs.tech.name,
     "/finance": catalogs.finance.name,
     "/house": catalogs.house.name,
     "/car": catalogs.car.name,
@@ -35,6 +35,6 @@ export const pathNameCatalogsMap = {
 };
 
 
-// export const currentDateUrl = 'http://192.168.163.16:80/api/currentDate';
+// export const currentDateUrl = 'http://192.168.163.16/api/currentDate';
 
 export const currentDateUrl = 'https://www.deepinews.com/api/currentDate';

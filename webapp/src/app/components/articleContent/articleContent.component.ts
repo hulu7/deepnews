@@ -5,9 +5,10 @@ import { Router } from '@angular/router';
 import { Observable, Subject } from 'rxjs';
 import { map, takeUntil } from 'rxjs/operators';
 
-import { catalogs, pathNameCatalogsMap} from "../../const/common-variables";
+import { pathNameCatalogsMap} from "../../const/common-variables";
 import { ListContentService } from "../../servcies/listContentService";
 import { PageService } from "../../servcies/pageService";
+import { isNullOrUndefined } from "util";
 
 
 @Component({
@@ -54,7 +55,7 @@ export class ArticleContentComponent implements OnInit, OnDestroy {
           this.cache = [];
           this.articles = [];
           this.page = 1;
-          this.currentCatalog = catalogs[pathNameCatalogsMap['/' + path]].label;
+          this.currentCatalog = pathNameCatalogsMap['/' + path];
           this.loadMoreArticles();
       },
         error => {
@@ -98,7 +99,7 @@ export class ArticleContentComponent implements OnInit, OnDestroy {
       let yyMmDdArray = published.split('-');
       article.published= today === published? '今天': yyMmDdArray[0] + '年' + yyMmDdArray[1] + '月' + yyMmDdArray[2] + '日';
       let images = [];
-      if (article.articleCover !== 'images/image.jpg') {
+      if (!isNullOrUndefined(article.articleCover) && article.articleCover !== 'images/image.jpg') {
         images = article.articleCover.split(",");
         images.forEach(image => {
           if (image === "") {

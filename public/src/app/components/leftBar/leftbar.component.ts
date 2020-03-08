@@ -28,7 +28,7 @@ export class LeftbarComponent implements OnInit {
 
   public selectTechnology(): void {
     this.pageService.setIsHome(false);
-    this.router.navigateByUrl('technology');
+    this.router.navigateByUrl('tech');
   }
 
   public selectFinance(): void {
@@ -60,8 +60,8 @@ export class LeftbarComponent implements OnInit {
       culture: false
     };
     switch (catagory) {
-      case 'technology':
-        this.buttonStatus.technology = true;
+      case 'tech':
+        this.buttonStatus.tech = true;
         break;
       case 'finance':
         this.buttonStatus.finance = true;

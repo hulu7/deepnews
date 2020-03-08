@@ -66,7 +66,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   public selectTechnology(): void {
-    this.goBranchPage('technology');
+    this.goBranchPage('tech');
   }
 
   public selectFinance(): void {

@@ -3,8 +3,8 @@ export const catalogs = {
         name: "",
         label: "全部"
     },
-    technology: {
-        name: "technology",
+    tech: {
+        name: "tech",
         label: "科技"
     },
     finance: {
@@ -27,7 +27,7 @@ export const catalogs = {
 
 export const pathNameCatalogsMap = {
     "/": "all",
-    "/technology": catalogs.technology.name,
+    "/tech": catalogs.tech.name,
     "/finance": catalogs.finance.name,
     "/house": catalogs.house.name,
     "/car": catalogs.car.name,

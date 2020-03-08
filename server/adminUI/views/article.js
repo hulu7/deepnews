@@ -68,7 +68,54 @@ exports.getArticleListContinue = function(req,res) {
 		catalog = req.query.catalog;
 	    limit = limit <= 10? limit: 10;
 
-	if (catalog === "全部") {
+	    function map(category) {
+	    	var m = {
+				finance: '财经',
+				politics: '党政',
+				comic: '动漫',
+				house: '房产',
+				home: '家居',
+				health: '健康',
+				edu: '教育',
+				military: '军事',
+				tech: '科技',
+				history: '历史',
+				travel: '旅游',
+				food: '美食',
+				agriculture: '农业',
+				car: '汽车',
+				emotion: '情感',
+				design: '设计',
+				society: '社会',
+				photography: '摄影',
+				collect: '收藏',
+				digital: '数码',
+				sports: '体育',
+				culture: '文化',
+				game: '游戏',
+				entertainment: '娱乐',
+				baby: '育儿',
+				IT: 'IT互联网',
+				career: '职场',
+				life: '养生',
+				lottery: '彩票',
+				pet: '宠物',
+				fashion: '时尚',
+				festival: '节日',
+				funny: '幽默',
+				psychology: '心理',
+				story: '故事汇',
+				wedding: '婚礼',
+				Movie: '电影',
+				TV: '电视',
+				buddhism: '佛教',
+				government: '政府',
+				astrology: '星座'
+			};
+	    	return m[category];
+		}
+
+	if (catalog === "all") {
 		articleModel.paginate({subscribe:{$in:['dn201900001']}}, {page: page, limit: limit, sort:{published:-1}}, function(err, result) {
 			result.docs.forEach(doc => {
 				delete doc._doc.subscribe;
@@ -78,7 +125,8 @@ exports.getArticleListContinue = function(req,res) {
 			err ? res.json({code:1,message:'文章列表失败'}) : res.json({code:0,message:'文章列表获取成功',result:result});
 		});
 	} else {
-		articleModel.paginate({catalog:{$in:[catalog]}, subscribe:{$in:['dn201900001']}}, {page: page, limit: limit, sort:{published:-1}}, function(err, result) {
+		var test = map(catalog)
+		articleModel.paginate({catalog:{$in:[test]}, subscribe:{$in:['dn201900001']}}, {page: page, limit: limit, sort:{published:-1}}, function(err, result) {
 			result.docs.forEach(doc => {
 				delete doc._doc.subscribe;
 				delete doc._doc.add;

@@ -9,7 +9,7 @@ import { CultureComponent } from "./components/cultureComponent/cultureComponent
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
-  { path: 'technology', component: TechnologyComponent },
+  { path: 'tech', component: TechnologyComponent },
   { path: 'finance', component: FinanceComponent },
   { path: 'house', component: HouseComponent },
   { path: 'car', component: CarComponent },

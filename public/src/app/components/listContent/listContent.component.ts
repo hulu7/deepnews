@@ -6,7 +6,7 @@ import { merge } from 'rxjs/observable/merge';
 import { distinct, filter, map, debounceTime, tap, flatMap } from 'rxjs/operators';
 import * as _ from 'lodash';
 import { ListContentService } from '../../servcies/listContentService';
-import { pathNameCatalogsMap, catalogs } from "../../const/common-variables";
+import { pathNameCatalogsMap } from "../../const/common-variables";
 import { isNullOrUndefined } from "util";
 
 @Component({
@@ -28,7 +28,7 @@ export class ListContentComponent implements OnInit {
               private datePipe: DatePipe) {}
 
   ngOnInit() {
-      this.currentCatalog = catalogs[pathNameCatalogsMap[window.location.pathname]].label;
+      this.currentCatalog = pathNameCatalogsMap[window.location.pathname];
   }
 
   private pageByScroll$ = fromEvent(window, "scroll")
