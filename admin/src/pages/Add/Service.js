@@ -21,7 +21,7 @@ export default angular.module('AddService',[])
 				// 发送请求
 				return $http({
 					method:'get',
-					url : `${SERVER_PATH}article/getAddedArticleList`,
+					url : `${SERVER_PATH}articles/getAddedArticleList`,
 					params:params
 				});
 
@@ -32,7 +32,7 @@ export default angular.module('AddService',[])
 				// 发送请求
 				return $http({
 					method:'get',
-					url : `${SERVER_PATH}article/deleteByID`,
+					url : `${SERVER_PATH}articles/deleteByID`,
 					params:{ id,Token }
 				});
 
@@ -43,7 +43,7 @@ export default angular.module('AddService',[])
 				// 发送请求
 				return $http({
 					method:'get',
-					url : `${SERVER_PATH}article/getArticleByID`,
+					url : `${SERVER_PATH}articles/getArticleByID`,
 					params:{ id,Token }
 				});
 
@@ -54,7 +54,7 @@ export default angular.module('AddService',[])
 				// 发送请求
 				return $http({
 					method:'post',
-					url : `${SERVER_PATH}article/modifyByID`,
+					url : `${SERVER_PATH}articles/modifyByID`,
 					data:formData,
 					params : { id,Token }
 				});
@@ -65,7 +65,7 @@ export default angular.module('AddService',[])
 
 				return $http({
 					method:'get',
-					url:`${SERVER_PATH}article/searchAdded`,
+					url:`${SERVER_PATH}articles/searchAdded`,
 					params:params
 				});
 
@@ -75,7 +75,7 @@ export default angular.module('AddService',[])
 
 				return $http({
 					method:'get',
-					url:`${SERVER_PATH}article/getCoun`,
+					url:`${SERVER_PATH}articles/getCoun`,
 					params:params
 				});
 

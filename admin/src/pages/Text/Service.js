@@ -11,7 +11,7 @@ export default angular.module('TextService',[])
 				// 发送请求
 				return $http({
 					method:'post',
-					url : `${SERVER_PATH}article/addArticle`,
+					url : `${SERVER_PATH}articles/addArticle`,
 					data : formData,
 					params : { Token }
 				})
@@ -33,7 +33,7 @@ export default angular.module('TextService',[])
 				// 发送请求
 				return $http({
 					method:'get',
-					url : `${SERVER_PATH}article/getArticleList`,
+					url : `${SERVER_PATH}articles/getArticleList`,
 					params:params
 				});
 
@@ -44,7 +44,7 @@ export default angular.module('TextService',[])
 				// 发送请求
 				return $http({
 					method:'get',
-					url : `${SERVER_PATH}article/deleteByID`,
+					url : `${SERVER_PATH}articles/deleteByID`,
 					params:{ id,Token }
 				});
 
@@ -55,7 +55,7 @@ export default angular.module('TextService',[])
 				// 发送请求
 				return $http({
 					method:'get',
-					url : `${SERVER_PATH}article/getArticleByID`,
+					url : `${SERVER_PATH}articles/getArticleByID`,
 					params:{ id,Token }
 				});
 
@@ -66,7 +66,7 @@ export default angular.module('TextService',[])
 				// 发送请求
 				return $http({
 					method:'post',
-					url : `${SERVER_PATH}article/modifyByID`,
+					url : `${SERVER_PATH}articles/modifyByID`,
 					data:formData,
 					params : { id,Token }
 				});
@@ -77,7 +77,7 @@ export default angular.module('TextService',[])
 
 				return $http({
 					method:'get',
-					url:`${SERVER_PATH}article/search`,
+					url:`${SERVER_PATH}articles/search`,
 					params:params
 				});
 
@@ -88,7 +88,7 @@ export default angular.module('TextService',[])
 
 				return $http({
 					method:'get',
-					url:`${SERVER_PATH}article/filterUser`,
+					url:`${SERVER_PATH}articles/filterUser`,
 					params:params
 				});
 
@@ -99,7 +99,7 @@ export default angular.module('TextService',[])
 
 				return $http({
 					method:'get',
-					url:`${SERVER_PATH}article/getCoun`,
+					url:`${SERVER_PATH}articles/getCoun`,
 					params:params
 				});
 

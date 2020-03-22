@@ -47,10 +47,10 @@ exports.start = app=>{
 	app.get('/article',article.GetSimlarArticle);
 
 	// 详情页 提交评论
-	app.post('/article/commit',article.commit);
+	app.post('/articles/commit',article.commit);
 
 	// 详情页 根据文章ID获取评论列表
-	app.get('/article/comment',article.comment);
+	app.get('/articles/comment',article.comment);
 
 	// 文字广告列表页
 	app.get('/textAds',textAds.list);

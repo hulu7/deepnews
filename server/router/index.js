@@ -41,16 +41,16 @@ exports.start = app=>{
 	app.get('/list',list.GetList);
 
 	// 详情页 获取文章详情
-	app.get('/article',article.GetArticleById);
+	app.get('/articles',article.GetArticleById);
 
 	// 详情页 获取相关文章
-	app.get('/article',article.GetSimlarArticle);
+	app.get('/articles',article.GetSimlarArticle);
 
 	// 详情页 提交评论
-	app.post('/article/commit',article.commit);
+	app.post('/articles/commit',article.commit);
 
 	// 详情页 根据文章ID获取评论列表
-	app.get('/article/comment',article.comment);
+	app.get('/articles/comment',article.comment);
 
 	// 文字广告列表页
 	app.get('/textAds',textAds.list);

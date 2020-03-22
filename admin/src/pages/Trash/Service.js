@@ -21,7 +21,7 @@ export default angular.module('TrashService',[])
 				// 发送请求
 				return $http({
 					method:'get',
-					url : `${SERVER_PATH}article/getTrashArticleList`,
+					url : `${SERVER_PATH}articles/getTrashArticleList`,
 					params:params
 				});
 
@@ -32,7 +32,7 @@ export default angular.module('TrashService',[])
 				// 发送请求
 				return $http({
 					method:'get',
-					url : `${SERVER_PATH}article/recoveryByID`,
+					url : `${SERVER_PATH}articles/recoveryByID`,
 					params:{ id,Token }
 				});
 
@@ -43,7 +43,7 @@ export default angular.module('TrashService',[])
 				// 发送请求
 				return $http({
 					method:'get',
-					url : `${SERVER_PATH}article/getArticleByID`,
+					url : `${SERVER_PATH}articles/getArticleByID`,
 					params:{ id,Token }
 				});
 
@@ -54,7 +54,7 @@ export default angular.module('TrashService',[])
 				// 发送请求
 				return $http({
 					method:'post',
-					url : `${SERVER_PATH}article/modifyByID`,
+					url : `${SERVER_PATH}articles/modifyByID`,
 					data:formData,
 					params : { id,Token }
 				});
@@ -65,7 +65,7 @@ export default angular.module('TrashService',[])
 
 				return $http({
 					method:'get',
-					url:`${SERVER_PATH}article/searchTrash`,
+					url:`${SERVER_PATH}articles/searchTrash`,
 					params:params
 				});
 
@@ -75,7 +75,7 @@ export default angular.module('TrashService',[])
 
 				return $http({
 					method:'get',
-					url:`${SERVER_PATH}article/getCoun`,
+					url:`${SERVER_PATH}articles/getCoun`,
 					params:params
 				});
 

@@ -48,46 +48,46 @@ exports.start = function(app){
 	app.post('/editImageUpload',common.editImageUpload);
 
 	// 添加文章
-	app.post('/article/addArticle',[jwtauth],article.addArticle);
+	app.post('/articles/addArticle',[jwtauth],article.addArticle);
 
 	// 根据栏目ID获取文章列表
-	app.get('/article/getArticleListByID',[jwtauth],article.getArticleListByID);
+	app.get('/articles/getArticleListByID',[jwtauth],article.getArticleListByID);
 
 	// 获取所有文章列表
-	app.get('/article/getArticleList',[jwtauth],article.getArticleList);
+	app.get('/articles/getArticleList',[jwtauth],article.getArticleList);
 
-	app.get('/article/getAddedArticleList',[jwtauth],article.getAddedArticleList);
+	app.get('/articles/getAddedArticleList',[jwtauth],article.getAddedArticleList);
 
-	app.get('/article/getMarkedArticleList',[jwtauth],article.getMarkedArticleList);
+	app.get('/articles/getMarkedArticleList',[jwtauth],article.getMarkedArticleList);
 
-	app.get('/article/getTrashArticleList',[jwtauth],article.getTrashArticleList);
+	app.get('/articles/getTrashArticleList',[jwtauth],article.getTrashArticleList);
 
 	// 根据文章ID删除文章
-	app.get('/article/deleteByID',[jwtauth],article.deleteByID);
+	app.get('/articles/deleteByID',[jwtauth],article.deleteByID);
 
 	// 根据文章ID获取指定文章信息
-	app.get('/article/getArticleByID',[jwtauth],article.getArticleByID);
+	app.get('/articles/getArticleByID',[jwtauth],article.getArticleByID);
 
 	// 根据文章ID修改指定文章信息
-	app.post('/article/modifyByID',[jwtauth],article.modifyByID);
+	app.post('/articles/modifyByID',[jwtauth],article.modifyByID);
 
 	// 根据关键字搜索文章
-	app.get('/article/search',[jwtauth],article.search);
+	app.get('/articles/search',[jwtauth],article.search);
 
 	// 过滤用户
-	app.get('/article/filterUser',[jwtauth],article.filterUser);
+	app.get('/articles/filterUser',[jwtauth],article.filterUser);
 
-    app.get('/article/searchMarked',[jwtauth],article.searchMarked);
+    app.get('/articles/searchMarked',[jwtauth],article.searchMarked);
 
-	app.get('/article/searchAdded',[jwtauth],article.searchAdded);
+	app.get('/articles/searchAdded',[jwtauth],article.searchAdded);
 
-	app.get('/article/searchTrash',[jwtauth],article.searchTrash);
+	app.get('/articles/searchTrash',[jwtauth],article.searchTrash);
 
 	// 获取文章总数
-	app.get('/article/getCount',[jwtauth],article.getCount);
+	app.get('/articles/getCount',[jwtauth],article.getCount);
 
 	// 获取最新文档
-	app.get('/article/getLastedArticle',[jwtauth],article.getLastedArticle);
+	app.get('/articles/getLastedArticle',[jwtauth],article.getLastedArticle);
 
 	// 根据Token检测登录状态是否有效
 	app.get('/login/validLoginStaus',[jwtauth],login.validLoginStaus);
@@ -150,12 +150,12 @@ exports.start = function(app){
 	app.get('/language/deleteLangById',[jwtauth],language.deleteLangById);
 
 	//Public APIs
-	app.get('/article/getArticle', article.getArticleListContinue);
+	app.get('/articles/getArticle', article.getArticleListContinue);
 
 	app.get('/currentDate', login.currentDate);
 
-	app.get('/article/searchArticles', article.searchArticles);
+	app.get('/articles/searchArticles', article.searchArticles);
 
-	app.post('/article/viewed', article.viewedArticle);
+	app.post('/articles/viewed', article.viewedArticle);
 
 }

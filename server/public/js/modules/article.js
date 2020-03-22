@@ -80,7 +80,7 @@ define(function(require,exports,module){
 
 		$.ajax({
 			type:'post',
-			url:SERVER_PATH +'/article/commit',
+			url:SERVER_PATH +'/articles/commit',
 			data:{
 				id:articleID,
 				applyContent:applyContent.val(),
@@ -117,7 +117,7 @@ define(function(require,exports,module){
 
 		$.ajax({
 			type:'get',
-			url:SERVER_PATH + '/article/comment',
+			url:SERVER_PATH + '/articles/comment',
 			data:{
 				id:id
 			},

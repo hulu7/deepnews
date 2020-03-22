@@ -20,7 +20,7 @@ export default angular.module('IndexService',[])
 
 				return $http({
 					method:'get',
-					url:`${SERVER_PATH}article/getCount`,
+					url:`${SERVER_PATH}articles/getCount`,
 					params : { Token,language }
 				})
 
@@ -50,7 +50,7 @@ export default angular.module('IndexService',[])
 
 				return $http({
 					method:'get',
-					url:`${SERVER_PATH}article/getLastedArticle`,
+					url:`${SERVER_PATH}articles/getLastedArticle`,
 					params:params
 				})
 

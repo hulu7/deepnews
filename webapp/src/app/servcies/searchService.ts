@@ -16,7 +16,7 @@ export class SearchService {
     }
 
     public searchArticles (page: any, pageLimit: any, key: string): Observable<any> {
-        // return this.http.get(`http://192.168.163.16/api/article/searchArticles?page=${page}&limit=${pageLimit}&key=${key}`);
-        return this.http.get(`https://www.deepinews.com/api/article/searchArticles?page=${page}&limit=${pageLimit}&key=${key}`);
+        // return this.http.get(`http://192.168.163.16/api/articles/searchArticles?page=${page}&limit=${pageLimit}&key=${key}`);
+        return this.http.get(`https://www.deepinews.com/api/articles/searchArticles?page=${page}&limit=${pageLimit}&key=${key}`);
     }
 }
