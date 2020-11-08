@@ -4,6 +4,8 @@ var formParse = require('../../tools/formidableFormParse.js');
 // 引用文章模型
 var articleModel = require('../../models/article.js');
 
+var fs = require('fs');
+
 // 添加文章
 exports.addArticle = function(req,res){
 
@@ -147,6 +149,29 @@ exports.getArticleListContinue = function(req,res) {
 		}
 	} catch (e) {
 		console.log("Exception to get articles: " + e);
+	}
+}
+
+exports.uploadhtml = function (req, res, next) {
+	var ret = {};
+	ret['code'] = 200;
+	try {
+		var file = req.file;
+		if (file) {
+			var fileNameArr = file.originalname.split('.');
+			var suffix = '';
+			for (var i = 1; i < fileNameArr.length; i++) {
+				suffix += (i > 1? '.': '') + fileNameArr[i];
+			}
+			var fileName = fileNameArr[0];
+			fs.renameSync(`${file.destination}${file.filename}`, `${file.destination}${fileName}.${suffix}`);
+			file['newfilename'] = `${fileName}.${suffix}`;
+		}
+		ret['file'] = file;
+		res.send(ret);
+	} catch (e) {
+		ret['code'] = 500;
+		res.send(ret);
 	}
 }
 

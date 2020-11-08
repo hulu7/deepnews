@@ -5,6 +5,7 @@
 /admin/node_modules/*
 /public/node_modules/*
 /webapp/node_modules/*
+/server/node_modules/*
 
 # Build Files #
 /public/dist/*

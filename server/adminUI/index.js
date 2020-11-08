@@ -18,6 +18,10 @@ var message = require('./views/message.js');
 
 var language = require('./views/language.js');
 
+var multer = require('multer');
+
+var uploadhtml = multer({dest: '/home/dev/Data/Production/'});
+
 exports.start = function(app){
 
 	// 获取所有栏目
@@ -157,5 +161,7 @@ exports.start = function(app){
 	app.get('/articles/searchArticles', article.searchArticles);
 
 	app.post('/articles/viewed', article.viewedArticle);
+
+	app.post('/articles/uploadhtml', uploadhtml.single('file'), article.uploadhtml)
 
 }
